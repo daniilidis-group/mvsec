@@ -1,0 +1,52 @@
+baseurl = "https://daniilidis-group.github.io/mvsec/"
+languageCode = "en-us"
+title = "Multi Vehicle Stereo Event Camera Dataset"
+theme = "hugo-material-docs"
+metadataformat = "yaml"
+canonifyurls = true
+
+[params]
+	# General information
+	author = "Alex Zhu"
+	description = "A data set for Stereo Event Cameras."
+
+	# Repository
+	provider = "GitHub"
+
+	favicon = "upenn_favicon.jpg"
+
+	permalink = "#"
+
+	# Custom assets
+	custom_css = ["tweaks.css"]
+	custom_js  = []
+
+	# Syntax highlighting theme
+	highlight_css  = ""
+	logo = "upenn_favicon.jpg"
+
+	[params.palette]
+	    	primary = "blue"
+    		accent  = "light-green"
+
+	[params.font]
+		text = "Ubuntu"
+		code = "Ubuntu Mono"
+
+
+[social]
+	twitter = ""
+	github  = "alexzzhu"
+	email   = "alexzhu@seas.upenn.edu"
+
+[[menu.main]]
+	name   = "Overview"
+	url    = ""
+	weight = 0
+
+
+[blackfriday]
+	smartypants	= true
+	fractions = true
+	smartDashes = true
+	plainIDAnchors = true

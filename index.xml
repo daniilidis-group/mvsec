@@ -207,6 +207,15 @@ The full set of sensor characteristics can be found below:
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
+
+&lt;h2 id=&#34;ground-truth&#34;&gt;Ground Truth&lt;/h2&gt;
+
+&lt;p&gt;For most sequences, accurate pose and depths are provided from a fusion of the sensors onboard.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;figs/perch_map.png&#34; alt=&#34;map with pose&#34; /&gt;
+&lt;center&gt;Reconstructed map with trajectory in green.&lt;/center&gt;
+&lt;img src=&#34;figs/depth_blend.png&#34; alt=&#34;depth image&#34; /&gt;
+&lt;center&gt;Depth map (red) overlaid on APS from DAVIS, lighter is further.&lt;/center&gt;&lt;/p&gt;
 </description>
     </item>
     

@@ -15,8 +15,8 @@ Note that these bags are large (up to 17G).
 <div style='float:left;margin-left:5%'>
 <table>
 <col width="30%">
-<col width="30%">
-<col width="30%">
+<col width="10%">
+<col width="50%">
 <tr><td>Scene</td><td>Calibration</td><td>Sequence</td></tr>
 <tr>
 <td>Indoor flying (Note: No VI-Sensor data is available for this scene).</td>

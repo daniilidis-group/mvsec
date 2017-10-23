@@ -43,7 +43,22 @@ canonifyurls = true
 	name   = "Overview"
 	url    = ""
 	weight = 0
-
+[[menu.main]]
+	name   = "Calibration Format"
+	url    = "calibration_format/"
+	weight = 10
+[[menu.main]]
+	name   = "Data Format"
+	url    = "data_format/"
+	weight = 15
+[[menu.main]]
+	name   = "Sample Code"
+	url    = "sample_code/"
+	weight = 20
+[[menu.main]]
+	name   = "Download"
+	url    = "download/"
+	weight = 25
 
 [blackfriday]
 	smartypants	= true

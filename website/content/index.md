@@ -204,3 +204,7 @@ For most sequences, accurate pose and depths are provided from a fusion of the s
 <center>Reconstructed map with trajectory in green.</center>
 ![depth image](figs/depth_blend.png)
 <center>Depth map (red) overlaid on APS from DAVIS, lighter is further.</center>
+
+## Citations
+
+This dataset is currently undergoing the review process. Please email the authors at alexzhu (at) seas.upenn.edu if you plan to use this dataset in a published work for the relevant citation.

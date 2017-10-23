@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sample_codes on Multi Vehicle Stereo Event Camera Dataset</title>
+    <link>https://daniilidis-group.github.io/mvsec/sample_code/</link>
+    <description>Recent content in Sample_codes on Multi Vehicle Stereo Event Camera Dataset</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Aug 2017 21:07:13 +0100</lastBuildDate>
+    <atom:link href="https://daniilidis-group.github.io/mvsec/sample_code/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Sample Code</title>
+      <link>https://daniilidis-group.github.io/mvsec/sample_code/</link>
+      <pubDate>Tue, 08 Aug 2017 21:07:13 +0100</pubDate>
+      
+      <guid>https://daniilidis-group.github.io/mvsec/sample_code/</guid>
+      <description>
+
+&lt;h2 id=&#34;ros-bag-sample-code&#34;&gt;ROS Bag Sample Code&lt;/h2&gt;
+
+&lt;p&gt;This sample code generates a ROS Subscriber that subscribes to the event stream, rectifies the events and integrates the rectified events over a fixed time window, publishing the integrated window. A rviz config will also be provided to easily visualize the data.&lt;/p&gt;
+
+&lt;p&gt;Coming soon!&lt;/p&gt;
+
+&lt;h2 id=&#34;text-file-sample-code&#34;&gt;Text File Sample Code&lt;/h2&gt;
+
+&lt;p&gt;This sample code reads the event text file, rectifies the events and integrates the rectified events over a fixed time window, publishing the integrated window.&lt;/p&gt;
+
+&lt;p&gt;Coming soon!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

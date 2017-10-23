@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data_formats on Multi Vehicle Stereo Event Camera Dataset</title>
+    <link>https://daniilidis-group.github.io/mvsec/data_format/</link>
+    <description>Recent content in Data_formats on Multi Vehicle Stereo Event Camera Dataset</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Aug 2017 21:07:13 +0100</lastBuildDate>
+    <atom:link href="https://daniilidis-group.github.io/mvsec/data_format/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Data Format</title>
+      <link>https://daniilidis-group.github.io/mvsec/data_format/</link>
+      <pubDate>Tue, 08 Aug 2017 21:07:13 +0100</pubDate>
+      
+      <guid>https://daniilidis-group.github.io/mvsec/data_format/</guid>
+      <description>
+
+&lt;h2 id=&#34;ros-bag-data-format&#34;&gt;ROS Bag Data Format&lt;/h2&gt;
+
+&lt;p&gt;Each sequence consists of a data ROS bag, with the following topics:
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;/davis/left/events&lt;/b&gt; (dvs_msgs/EventArray) - Events from the left DAVIS camera.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/davis/left/image_raw&lt;/b&gt; (sensor_msgs/Image) - Grayscale images from the left DAVIS camera.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/davis/left/imu&lt;/b&gt; (sensor_msgs/Imu) - IMU readings from the left DAVIS camera.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/davis/right/events&lt;/b&gt; (dvs_msgs/EventArray) - Events from the right DAVIS camera.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/davis/right/image_raw&lt;/b&gt; (sensor_msgs/Image) - Grayscale images from the right DAVIS camera.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/davis/right/imu&lt;/b&gt; (sensor_msgs/Imu) - IMU readings from the right DAVIS camera.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/velodyne_point_cloud&lt;/b&gt; (sensor_msgs/PointCloud2) - Point clouds from the Velodyne (one per spin).&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/cam0/image_raw&lt;/b&gt; (sensor_msgs/Image) - Grayscale images from the left VI-Sensor camera.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/cam1/image_raw&lt;/b&gt; (sensor_msgs/Image) - Grayscale images from the right VI-Sensor camera.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/imu0&lt;/b&gt; (sensor_msgs/Imu) - IMU readings from the VI-Sensor.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/cust_imu0&lt;/b&gt; (visensor_node/visensor_imu) - Full IMU readings from the VI-Sensor (including magnetometer, temperature and pressure).&lt;/li&gt;
+&lt;ul&gt;&lt;/p&gt;
+
+&lt;p&gt;Two sets of custom messages are used, dvs_msgs/EventArray from &lt;a href=&#34;https://github.com/uzh-rpg/rpg_dvs_ros&#34;&gt;rpg_dvs_ros&lt;/a&gt; and visensor_node/visensor_imu from &lt;a href=&#34;https://github.com/ethz-asl/visensor_node&#34;&gt;visensor_node&lt;/a&gt;. The visensor_node package is optional if you do not need the extra IMU outputs (magnetometer, temperature and pressure.&lt;/p&gt;
+
+&lt;p&gt;In addition, each corresponding ground truth bag contains the following topics:
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;/davis/left/depth_image_raw&lt;/b&gt; (sensor_msgs/Image) - Depth maps for the left DAVIS camera at a given timestamp (note, these images are saved using the CV_32FC1 format (i.e. floats).&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/davis/left/blended_image_rect&lt;/b&gt; (sensor_msgs/Image) - Visualization of all events from the left DAVIS that are 25ms from each left depth map superimposed on the depth map. This message gives a preview of what each sequence looks like.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/davis/left/odometry&lt;/b&gt; (geometry_msgs/PoseStamped) - Pose output using &lt;a href=&#34;https://www.ri.cmu.edu/publications/loam-lidar-odometry-and-mapping-in-real-time/&#34;&gt;LOAM&lt;/a&gt;. These poses are locally consistent, but may experience drift over time. Used to stitch point clouds together to generate depth maps.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/davis/left/pose&lt;/b&gt; (geometry_msgs/PoseStamped) - Pose output using &lt;a href=&#34;https://google-cartographer-ros.readthedocs.io/en/latest/&#34;&gt;Google Cartographer&lt;/a&gt;. These poses are globally loop closed, and can be assumed to have minimal drift. Note that these poses were optimized using Cartographer&amp;rsquo;s 2D mapping, which does &lt;b&gt;not&lt;/b&gt; optimize over the height (Z axis). Pitch and roll are still optimized, however.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/davis/right/depth_image_raw&lt;/b&gt; (sensor_msgs/Image) - Depth maps for the right DAVIS camera at a given timestamp.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/davis/right/blended_image_rect&lt;/b&gt; (sensor_msgs/Image) - Visualization of all events from the right DAVIS that are 25ms from each right depth map superimposed on the depth map. This message gives a preview of what each sequence looks like.&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;text-format&#34;&gt;Text Format&lt;/h2&gt;
+
+&lt;p&gt;Coming soon!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

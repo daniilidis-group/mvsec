@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Multi Vehicle Stereo Event Camera Dataset</title>
+    <title>Sample Code - Multi Vehicle Stereo Event Camera Dataset</title>
     <meta name="generator" content="Hugo 0.16-DEV" />
 
     
     <meta name="description" content="A data set for Stereo Event Cameras.">
     
-    <link rel="canonical" href="https://daniilidis-group.github.io/mvsec/">
+    <link rel="canonical" href="https://daniilidis-group.github.io/mvsec/sample_code/">
     
     <meta name="author" content="Alex Zhu">
     
 
-    <meta property="og:url" content="https://daniilidis-group.github.io/mvsec/">
+    <meta property="og:url" content="https://daniilidis-group.github.io/mvsec/sample_code/">
     <meta property="og:title" content="Multi Vehicle Stereo Event Camera Dataset">
     <meta property="og:image" content="https://daniilidis-group.github.io/mvsec/upenn_favicon.jpg">
     <meta name="apple-mobile-web-app-title" content="Multi Vehicle Stereo Event Camera Dataset">
@@ -105,12 +105,10 @@ $
 $
 
     
-    <link href="https://daniilidis-group.github.io/mvsec/index.xml" rel="alternate" type="application/rss+xml" title="Multi Vehicle Stereo Event Camera Dataset" />
-    <link href="https://daniilidis-group.github.io/mvsec/index.xml" rel="feed" type="application/rss+xml" title="Multi Vehicle Stereo Event Camera Dataset" />
-    
 
   </head>
   <body class="palette-primary-blue palette-accent-light-green">
+
 
 
 
@@ -133,7 +131,7 @@ $
     <div class="headtitle">
     <div class="stretch">
       <div class="title">
-        Multi Vehicle Stereo Event Camera Dataset
+        Sample Code
       </div>
     </div>
     </div>
@@ -200,14 +198,11 @@ $
 
 
 
-<a class="current" title="Overview" href="https://daniilidis-group.github.io/mvsec/">
+<a  title="Overview" href="https://daniilidis-group.github.io/mvsec/">
 	
 	Overview
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
   
 </li>
@@ -254,11 +249,14 @@ $
 
 
 
-<a  title="Sample Code" href="https://daniilidis-group.github.io/mvsec/sample_code/">
+<a class="current" title="Sample Code" href="https://daniilidis-group.github.io/mvsec/sample_code/">
 	
 	Sample Code
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
   
 </li>
@@ -309,238 +307,57 @@ $
 
 	<article class="article">
 		<div class="wrapper">
-			
-				<h1>The MVSEC Data Set </h1>
-
-				
-
-<h2 id="the-multi-view-stereo-event-camera-dataset">The Multi View Stereo Event Camera Dataset</h2>
-
-<p><img src="figs/sensor_mounts.jpg" alt="Sensors mounted on multiple vehicles." style="height: 250px;"/></p>
-
-<p>This website is currently being built while we are waiting to get the
-data storage online. Please check back soon!</p>
-
-<p>The Multi Vehicle Stereo Event Camera dataset is a collection of data designed for the development of novel 3D perception algorithms for <strong>event based cameras</strong>. Stereo event data is collected from car, motorbike, hexacopter and handheld data, and fused with lidar, IMU, motion capture and GPS to provide ground truth pose and depth images. In addition, we provide images from a standard stereo frame based camera pair for comparison with traditional techniques.</p>
-
-<p>Event based cameras are a new <strong>asynchronous</strong> sensing modality that measure changes in image intensity. When the log intensity over a pixel changes above a set threshold, the camera <strong>immediately</strong> returns the pixel location of a change, along with a timestamp with <strong>microsecond</strong> accuracy, and the direction of the change (up or down). This allows for sensing with extremely low latency. In addition, the cameras have extremely <strong>high dynamic range</strong> and <strong>low power usage</strong>.</p>
-
-<h2 id="sequences">Sequences</h2>
-
-<table class="image">
-<tr><td>
-<img src="figs/vicon_image.png" alt="Hexacopter Indoor." style="width: 100%;"/>
-</td>
-
-<td>
-<img src="figs/qualisys_imag.png" alt="Hexacopter Outdoor." style="width: 100%;"/>
-</td>
-
-<td>
-<img src="figs/indoor_outdoor.png" alt="Handheld." style="width: 100%;"/>
-</td>
-</tr>
-<tr>
-<td class="caption">
-<center>Hexacopter Indoor</center>
-</td>
-<td class="caption">
-<center>Hexacopter Outdoor</center>
-</td>
-<td class="caption">
-<center>Handheld</center>
-</td>
-<tr>
-<td>
-<img src="figs/driving_day_image.png" alt="Daytime Driving." style="width: 100%;"/>
-</td>
-<td>
-<img src="figs/driving_night_image.png" alt="Nighttime Driving.." style="width: 100%;"/>
-</td>
-</tr>
-<tr>
-<td class="caption">
-<center>Daytime Driving</center>
-</td>
-<td class="caption">
-<center>Nighttime Driving</center>
-</td>
-</tr>
-</table>
-</center>
-
-Data was collected from four different vehicles, in both indoor and outdoor environments, in day and night settings. All hexacopter sequences have motion capture ground truth from an indoor Vicon area and outdoor Qualisys area, while the other sequences have ground truth generated by fusing lidar information with IMU and GPS.
-The full list of sequences can be found below: 
-
-<div style='float:left;margin-left:5%'>
-<table>
-<tr><td>Vehicle</td><td>Sequence</td></tr>
-<tr>
-<td>Hexacopter</td>
-<td>
-<ul>
-<li>Indoor short</li>
-<li>Indoor long</li>
-<li>Outdoor afternoon</li>
-<li>Outdoor evening</li>
-</ul>
-</td>
-</tr>
-<tr>
-<td>Handheld</td>
-<td>
-<ul>
-<li>Indoor-outdoor</li>
-<li>Outdoor-indoor</li>
-</ul>
-</td>
-</tr>
-<tr>
-<td>Outdoor Car</td>
-<td>
-<ul>
-<li>Pennovations day</li>
-<li>Pennovations evening</li>
-<li>West Philadelphia day</li>
-<li>West Philadelphia evening</li>
-</ul>
-</td>
-</tr>
-<tr>
-<td>Motorcycle</td>
-<td>
-<ul>
-<li>Motorcycle highway</li>
-</ul>
-</td>
-</tr>
-</table>
-</div>
-
-<div style='margin-left:50%;margin-top:5%;' >
-<img src="figs/vicon.jpg" alt="Indoor Vicon motion capture area." style="width: 400px;"/>
-<center>Indoor Vicon motion capture area.</center>
-<img src="figs/qualisys.jpg" alt="Outdoor Qualisys motion capture area." style="width: 400px;"/>
-<center>Outdoor Qualisys motion capture area.</center>
-</div>
-
-<BR CLEAR="all">
-
-<h2>Sensors</h2>
-
-<img src="figs/car_sensor_rig.png" alt="Full sensor configuration." style="height: 300px;" align="right"/>
-
-A number of different sensors and modalities and rigidly mounted to a stereo event camera pair, in order to generate accurate ground truth information, as well as to provide avenues for research in sensor fusion between modalities.
-<br/>
-<br/>
-For events, two experimental DAVIS 346B cameras are mounted in a stereo (X axes aligned) configuration. each camera has a resolution of 346x260 pixels, with a 4mm lens and roughly 70 degrees vertical field of view. The camera clocks are synchronized by a hardware trigger generated by the left camera and send to the right camera. In addition to events, the cameras also each generate IMU and frame based image measurements.
-<br/>
-<br/>
-In addition, a Velodyne lidar and stereo frame based camera with IMU (VI Sensor) is mounted with the DAVIS cameras. When available, ground truth pose is also captured using an indoor (Vicon, left) or outdoor (Qualisys, right) motion capture system.
-<br/>
-<br/>
-The full set of sensor characteristics can be found below:
-
-<table>
-<tr><td>Sensor</td><td>Characteristics</td></tr>
-<tr>
-<td>DAVIS 346B</td>
-<td>
-<ul>
-<li>346x260 pixels</li>
-<li>APS (Active Pixel Sensor for frame based images)</li>
-<li>DVS (Dynamic Vision Sensor for events)</li>
-<li>FOV: 50&deg vert., 65&deg horiz.</li>
-<li>IMU: MPU 6150 at 1kHz</li>
-</ul>
-</td>
-</tr>
-<tr>
-<td>VI-Sensor</td>
-<td>
-<ul>
-<li>Skybotix integrated VI-sensor</li>
-<li>stereo camera: 2 x Aptina MT9V034</li>
-<li>gray 2x752x480 at 20fps (rectified), global shutter</li>
-<li>FOV: 57deg vert., 2 x 80deg horiz.</li>
-<li>IMU: ADIS16488 at 200Hz</li>
-</ul>
-</td>
-</tr>
-<tr>
-<td>Velodyne Puck LITE</td>
-<td>
-<ul>
-<li>VLP-16 PUCK LITE</li>
-<li>FOV: 30&deg vert. 360&deg horiz.</li>
-<li>16 channel</li>
-<li>20Hz</li>
-<li>100m range</li>
-</ul>
-</td>
-</tr>
-<tr>
-<td>GPS</td>
-<td>
-<ul>
-<li>UBLOX NEO-M8N</li>
-<li>72-channel u-blox M8 engine</li>
-<li>Position accuracy 2.0m CEP</li>
-</ul>
-</td>
-</tr>
-<td>Motion Capture</td>
-<td>
-<ul>
-<li>Indoor Vicon</li>
-<li>88 x 22 x 15 ft</li>
-<li>20 Vicon Vantage VP-16 Cameras</li>
-<li>100Hz pose updates</li>
-<li>Outdoor Qualisys</li>
-<li>100 x 50 x 50 ft</li>
-<li>34 Qualisys Opus 700 Cameras</li>
-<li>100Hz pose updates</li>
-</ul>
-</td>
-</tr>
-</table>
-
-<h2 id="ground-truth">Ground Truth</h2>
-
-<p>For most sequences, accurate pose and depths are provided from a fusion of the sensors onboard.</p>
-
-<p><img src="figs/perch_map.png" alt="map with pose" />
-<center>Reconstructed map with trajectory in green.</center>
-<img src="figs/depth_blend.png" alt="depth image" />
-<center>Depth map (red) overlaid on APS from DAVIS, lighter is further.</center></p>
-
-<h2 id="citations">Citations</h2>
-
-<p>This dataset is currently undergoing the review process. Please email the authors at alexzhu (at) seas.upenn.edu if you plan to use this dataset in a published work for the relevant citation.</p>
+			<h1>Sample Code </h1>
 
 			
+
+<h2 id="ros-bag-sample-code">ROS Bag Sample Code</h2>
+
+<p>This sample code generates a ROS Subscriber that subscribes to the event stream, rectifies the events and integrates the rectified events over a fixed time window, publishing the integrated window. A rviz config will also be provided to easily visualize the data.</p>
+
+<p>Coming soon!</p>
+
+<h2 id="text-file-sample-code">Text File Sample Code</h2>
+
+<p>This sample code reads the event text file, rectifies the events and integrates the rectified events over a fixed time window, publishing the integrated window.</p>
+
+<p>Coming soon!</p>
 
 
 			<footer class="footer">
 				
 
-
-
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
+  
+      <a href="https://daniilidis-group.github.io/mvsec/data_format/" title="Data Format">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Data Format
+            </div>
+          </div>
+        </div>
+      </a>
+  
   </div>
 
-  
-  
   <div class="next">
-      <a href="https://daniilidis-group.github.io/mvsec/calibration_format/" title="Calibration">
+  
+      <a href="https://daniilidis-group.github.io/mvsec/download/" title="Download">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Calibration
+              Download
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -548,8 +365,11 @@ The full set of sensor characteristics can be found below:
           </div>
         </div>
       </a>
+  
   </div>
 </nav>
+
+
 
 
 

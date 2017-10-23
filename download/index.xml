@@ -28,8 +28,8 @@
 &lt;div style=&#39;float:left;margin-left:5%&#39;&gt;
 &lt;table&gt;
 &lt;col width=&#34;30%&#34;&gt;
-&lt;col width=&#34;30%&#34;&gt;
-&lt;col width=&#34;30%&#34;&gt;
+&lt;col width=&#34;10%&#34;&gt;
+&lt;col width=&#34;50%&#34;&gt;
 &lt;tr&gt;&lt;td&gt;Scene&lt;/td&gt;&lt;td&gt;Calibration&lt;/td&gt;&lt;td&gt;Sequence&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Indoor flying (Note: No VI-Sensor data is available for this scene).&lt;/td&gt;

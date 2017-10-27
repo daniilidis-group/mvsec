@@ -12,6 +12,8 @@ Sequences will be added to this page on a rolling basis. We also plan to include
 
 Note that these bags are large (up to 17G).
 
+Links will be right back!
+<!--
 <div style='float:left;margin-left:5%'>
 <table>
 <col width="30%">
@@ -101,7 +103,7 @@ West Philadelphia Night 3 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor
 </tr>
 </table>
 </div>
-
+-->
 
 <BR CLEAR="all">
 ## Text Files

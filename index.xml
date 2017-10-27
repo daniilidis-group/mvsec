@@ -239,6 +239,11 @@ The full set of sensor characteristics can be found below:
 
 &lt;p&gt;To rectify the DAVIS images and events, you will need to use the &lt;a href=&#34;https://docs.opencv.org/3.0-beta/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html#fisheye&#34;&gt;OpenCV fisheye rectification functions&lt;/a&gt;. This amounts to simply adding the fisheye namespace in front of the usual function (e.g. cv::fisheye::undistortPoints vs cv::undistortPoints). Note that the same cv::remap function works on both sets of images (no fisheye namespace needed). ROS does not currently support the equidistant distortion model. However, you can look at these pull requests: &lt;a href=&#34;https://github.com/ros/common_msgs/pull/109&#34;&gt;one&lt;/a&gt;, &lt;a href=&#34;https://github.com/ros-perception/vision_opencv/pull/184&#34;&gt;two&lt;/a&gt;, to the common_msgs and vision_opencv repos to find changes to the ROS image processing pipeline that allow for this model. Once these pull requests are merged in, this will no longer be necessary.&lt;/p&gt;
 
+&lt;p&gt;For convenience, the mapping between each pixel in the distorted image and the corresponding pixel in the rectified image is stored for each camera as $SEQUENCE_(left/right)_(x/y)_map.txt. For example, to rectify an event (or any point) (x, y) in the left DAVIS camera for outdoor_day:&lt;/p&gt;
+
+&lt;p&gt;x_rect = outdoor_day_left_x(y, x)&lt;/br&gt;
+y_rect = outdoor_day_left_y(y, x)&lt;/p&gt;
+
 &lt;p&gt;The extrinsics between the lidar and the left DAVIS camera are provided, as well as extrinsics between all cameras, as well as between each camera and its own IMU. In addition, the ground truth pose has been transformed into the left DAVIS camera frame.&lt;/p&gt;
 
 &lt;p&gt;All intrinsic and extrinsic calibrations are stored in &lt;strong&gt;yaml&lt;/strong&gt; format, roughly following the calibration yaml files output from &lt;a href=&#34;https://github.com/ethz-asl/kalibr&#34;&gt;Kalibr&lt;/a&gt;.&lt;/p&gt;
@@ -252,6 +257,8 @@ The full set of sensor characteristics can be found below:
   &lt;ul&gt;
     &lt;li&gt;Distortion model and coefficients&lt;/li&gt;
     &lt;li&gt;Intrinsics&lt;/li&gt;
+    &lt;li&gt;Rectification matrix&lt;/li&gt;
+    &lt;li&gt;Projection matrix&lt;/li&gt;
     &lt;li&gt;Resolution&lt;/li&gt;
     &lt;li&gt;The ROS topic corresponding to this camera&lt;/li&gt;
     &lt;li&gt;T_cam_imu: The 4x4 transformation that takes a point from this camera&amp;rsquo;s IMU frame (where applicable) to this camera&amp;rsquo;s camera frame.&lt;/li&gt;
@@ -281,10 +288,10 @@ The full set of sensor characteristics can be found below:
 &lt;li&gt;&lt;b&gt;/davis/right/image_raw&lt;/b&gt; (sensor_msgs/Image) - Grayscale images from the right DAVIS camera.&lt;/li&gt;
 &lt;li&gt;&lt;b&gt;/davis/right/imu&lt;/b&gt; (sensor_msgs/Imu) - IMU readings from the right DAVIS camera.&lt;/li&gt;
 &lt;li&gt;&lt;b&gt;/velodyne_point_cloud&lt;/b&gt; (sensor_msgs/PointCloud2) - Point clouds from the Velodyne (one per spin).&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;/cam0/image_raw&lt;/b&gt; (sensor_msgs/Image) - Grayscale images from the left VI-Sensor camera.&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;/cam1/image_raw&lt;/b&gt; (sensor_msgs/Image) - Grayscale images from the right VI-Sensor camera.&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;/imu0&lt;/b&gt; (sensor_msgs/Imu) - IMU readings from the VI-Sensor.&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;/cust_imu0&lt;/b&gt; (visensor_node/visensor_imu) - Full IMU readings from the VI-Sensor (including magnetometer, temperature and pressure).&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/visensor/left/image_raw&lt;/b&gt; (sensor_msgs/Image) - Grayscale images from the left VI-Sensor camera.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/visensor/right/image_raw&lt;/b&gt; (sensor_msgs/Image) - Grayscale images from the right VI-Sensor camera.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/visensor/imu&lt;/b&gt; (sensor_msgs/Imu) - IMU readings from the VI-Sensor.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/visensor/cust_imu&lt;/b&gt; (visensor_node/visensor_imu) - Full IMU readings from the VI-Sensor (including magnetometer, temperature and pressure).&lt;/li&gt;
 &lt;ul&gt;&lt;/p&gt;
 
 &lt;p&gt;Two sets of custom messages are used, dvs_msgs/EventArray from &lt;a href=&#34;https://github.com/uzh-rpg/rpg_dvs_ros&#34;&gt;rpg_dvs_ros&lt;/a&gt; and visensor_node/visensor_imu from &lt;a href=&#34;https://github.com/ethz-asl/visensor_node&#34;&gt;visensor_node&lt;/a&gt;. The visensor_node package is optional if you do not need the extra IMU outputs (magnetometer, temperature and pressure.&lt;/p&gt;
@@ -292,10 +299,12 @@ The full set of sensor characteristics can be found below:
 &lt;p&gt;In addition, each corresponding ground truth bag contains the following topics:
 &lt;ul&gt;
 &lt;li&gt;&lt;b&gt;/davis/left/depth_image_raw&lt;/b&gt; (sensor_msgs/Image) - Depth maps for the left DAVIS camera at a given timestamp (note, these images are saved using the CV_32FC1 format (i.e. floats).&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/davis/left/depth_image_rect&lt;/b&gt; (sensor_msgs/Image) - Rectified depth maps for the left DAVIS camera at a given timestamp (note, these images are saved using the CV_32FC1 format (i.e. floats).&lt;/li&gt;
 &lt;li&gt;&lt;b&gt;/davis/left/blended_image_rect&lt;/b&gt; (sensor_msgs/Image) - Visualization of all events from the left DAVIS that are 25ms from each left depth map superimposed on the depth map. This message gives a preview of what each sequence looks like.&lt;/li&gt;
 &lt;li&gt;&lt;b&gt;/davis/left/odometry&lt;/b&gt; (geometry_msgs/PoseStamped) - Pose output using &lt;a href=&#34;https://www.ri.cmu.edu/publications/loam-lidar-odometry-and-mapping-in-real-time/&#34;&gt;LOAM&lt;/a&gt;. These poses are locally consistent, but may experience drift over time. Used to stitch point clouds together to generate depth maps.&lt;/li&gt;
 &lt;li&gt;&lt;b&gt;/davis/left/pose&lt;/b&gt; (geometry_msgs/PoseStamped) - Pose output using &lt;a href=&#34;https://google-cartographer-ros.readthedocs.io/en/latest/&#34;&gt;Google Cartographer&lt;/a&gt;. These poses are globally loop closed, and can be assumed to have minimal drift. Note that these poses were optimized using Cartographer&amp;rsquo;s 2D mapping, which does &lt;b&gt;not&lt;/b&gt; optimize over the height (Z axis). Pitch and roll are still optimized, however.&lt;/li&gt;
 &lt;li&gt;&lt;b&gt;/davis/right/depth_image_raw&lt;/b&gt; (sensor_msgs/Image) - Depth maps for the right DAVIS camera at a given timestamp.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;/davis/right/depth_image_rect&lt;/b&gt; (sensor_msgs/Image) - Rectified depth maps for the right DAVIS camera at a given timestamp.&lt;/li&gt;
 &lt;li&gt;&lt;b&gt;/davis/right/blended_image_rect&lt;/b&gt; (sensor_msgs/Image) - Visualization of all events from the right DAVIS that are 25ms from each right depth map superimposed on the depth map. This message gives a preview of what each sequence looks like.&lt;/li&gt;
 &lt;/ul&gt;&lt;/p&gt;
 
@@ -343,8 +352,6 @@ The full set of sensor characteristics can be found below:
 
 &lt;p&gt;Note that these bags are large (up to 17G).&lt;/p&gt;
 
-&lt;p&gt;Links will be right back!
-&lt;!--
 &lt;div style=&#39;float:left;margin-left:5%&#39;&gt;
 &lt;table&gt;
 &lt;col width=&#34;30%&#34;&gt;
@@ -354,7 +361,7 @@ The full set of sensor characteristics can be found below:
 &lt;tr&gt;
 &lt;td&gt;Indoor flying (Note: No VI-Sensor data is available for this scene).&lt;/td&gt;
 &lt;td&gt;
-&lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/indoor_flying/camchain-imucam-indoor_flying.yaml&#34;&gt;Calibration&lt;/a&gt;
+&lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying_calib.zip&#34;&gt;Calibration&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
 Indoor Flying 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flight1_data.bag&#34;&gt;Data (894M)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flight1_gt.bag&#34;&gt;Ground truth (1.7G)&lt;/a&gt;
@@ -390,7 +397,7 @@ Indoor Flying 4 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/indoor_fly
 &lt;tr&gt;
 &lt;td&gt;Outdoor Driving Day (Note: A hardware failure caused the grayscale images on the right DAVIS grayscale images for this scene to be corrupted. However, VI-Sensor grayscale images are available).&lt;/td&gt;
 &lt;td&gt;
-&lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/camchain-imucam-outdoor_day.yaml&#34;&gt;Calibration&lt;/a&gt;
+&lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day_calib.zip&#34;&gt;Calibration&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
 West Philadelphia Day 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day1_data.bag&#34;&gt;Data (7.2G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day1_gt.bag&#34;&gt;Ground truth (6.1G)&lt;/a&gt;
@@ -408,7 +415,7 @@ West Philadelphia Day 2 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/ou
 &lt;tr&gt;
 &lt;td&gt;Outdoor Driving Night&lt;/td&gt;
 &lt;td&gt;
-&lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/camchain-imucam-outdoor_night.yaml&#34;&gt;Calibration&lt;/a&gt;
+&lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night_calib.zip&#34;&gt;Calibration&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
 West Philadelphia Night 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night1_data.bag&#34;&gt;Data (6.0G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night1_gt.bag&#34;&gt;Ground truth (6.1G)&lt;/a&gt;
@@ -434,7 +441,6 @@ West Philadelphia Night 3 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/div&gt;
---&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;BR CLEAR=&#34;all&#34;&gt;&lt;/p&gt;
 

@@ -10,7 +10,7 @@ To process the bag files, you will need the <a href="https://github.com/uzh-rpg/
 
 Sequences will be added to this page on a rolling basis. We also plan to include videos for each sequence.
 
-Note that these bags are large (up to 17G).
+Note that these bags are large (up to 27G).
 
 <div style='float:left;margin-left:5%'>
 <table>
@@ -24,7 +24,7 @@ Note that these bags are large (up to 17G).
 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying_calib.zip">Calibration</a>
 </td>
 <td>
-Indoor Flying 1 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying1_data.bag">Data (894M)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying1_gt.bag">Ground truth (1.7G)</a>
+Indoor Flying 1 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying1_data.bag">Data (1.2G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying1_gt.bag">Ground truth (2.6G)</a>
 </td>
 </tr>
 <tr>
@@ -33,7 +33,7 @@ Indoor Flying 1 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/ind
 <td>
 </td>
 <td>
-Indoor Flying 2 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying2_data.bag">Data (1.1G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying2_gt.bag">Ground truth (2.0G)</a>
+Indoor Flying 2 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying2_data.bag">Data (1.7G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying2_gt.bag">Ground truth (3.2G)</a>
 </td>
 </tr>
 <tr>
@@ -42,7 +42,7 @@ Indoor Flying 2 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/ind
 <td>
 </td>
 <td>
-Indoor Flying 3 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying3_data.bag">Data (1.2G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying3_gt.bag">Ground truth (2.3G)</a>
+Indoor Flying 3 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying3_data.bag">Data (1.8G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying3_gt.bag">Ground truth (3.5G)</a>
 </td>
 </tr>
 <tr>
@@ -51,7 +51,7 @@ Indoor Flying 3 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/ind
 <td>
 </td>
 <td>
-Indoor Flying 4 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying4_data.bag">Data (241M)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying4_gt.bag">Ground truth (470M)</a>
+Indoor Flying 4 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying4_data.bag">Data (419M)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying4_gt.bag">Ground truth (738M)</a>
 </td>
 </tr>
 <tr>
@@ -60,7 +60,7 @@ Indoor Flying 4 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/ind
 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day_calib.zip">Calibration</a>
 </td>
 <td>
-West Philadelphia Day 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day1_data.bag">Data (7.2G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day1_gt.bag">Ground truth (6.1G)</a>
+West Philadelphia Day 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day1_data.bag">Data (9.7G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day1_gt.bag">Ground truth (9.5G)</a>
 </td>
 </tr>
 <tr>
@@ -69,7 +69,7 @@ West Philadelphia Day 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_d
 <td>
 </td>
 <td>
-West Philadelphia Day 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day2_data.bag">Data (17G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day2_gt.bag">Ground truth (15G)</a>
+West Philadelphia Day 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day2_data.bag">Data (27G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day2_gt.bag">Ground truth (23G)</a>
 </td>
 </tr>
 <tr>
@@ -78,7 +78,7 @@ West Philadelphia Day 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_d
 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night_calib.zip">Calibration</a>
 </td>
 <td>
-West Philadelphia Night 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night1_data.bag">Data (6.0G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night1_gt.bag">Ground truth (6.1G)</a>
+West Philadelphia Night 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night1_data.bag">Data (8.1G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night1_gt.bag">Ground truth (9.5G)</a>
 </td>
 </tr>
 <tr>
@@ -87,7 +87,7 @@ West Philadelphia Night 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor
 <td>
 </td>
 <td>
-West Philadelphia Night 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night2_data.bag">Data (8.7G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night2_gt.bag">Ground truth (6.5G)</a>
+West Philadelphia Night 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night2_data.bag">Data (11G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night2_gt.bag">Ground truth (11G)</a>
 </td>
 </tr>
 <tr>
@@ -96,7 +96,7 @@ West Philadelphia Night 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor
 <td>
 </td>
 <td>
-West Philadelphia Night 3 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night3_data.bag">Data (6.5G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night3_gt.bag">Ground truth (6.4G)</a>
+West Philadelphia Night 3 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night3_data.bag">Data (9G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night3_gt.bag">Ground truth (11G)</a>
 </td>
 </tr>
 </table>

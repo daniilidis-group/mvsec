@@ -17,7 +17,7 @@ Note that these bags are large (up to 27G).
 <col width="30%">
 <col width="10%">
 <col width="50%">
-<tr><td>Scene</td><td>Calibration</td><td>Sequence</td></tr>
+<tr><td>Scene</td><td>Calibration</td><td>Sequence</td><td>Map/Image</td></tr>
 <tr>
 <td>Indoor flying (Note: No VI-Sensor data is available for this scene).</td>
 <td>
@@ -62,6 +62,12 @@ Indoor Flying 4 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/ind
 <td>
 West Philadelphia Day 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day1_data.bag">Data (9.7G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day1_gt.bag">Ground truth (9.5G)</a>
 </td>
+<td>
+<a target="_blank" href="../figs/gt_maps/west_philly_day1_traj.jpg">
+<img src="../figs/gt_maps/west_philly_day1_traj.jpg" alt="west_philly_day1" style="max-height:150px"/>
+</a>
+</td>
+
 </tr>
 <tr>
 <td>
@@ -70,6 +76,11 @@ West Philadelphia Day 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_d
 </td>
 <td>
 West Philadelphia Day 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day2_data.bag">Data (27G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day2_gt.bag">Ground truth (23G)</a>
+</td>
+<td>
+<a target="_blank" href="../figs/gt_maps/west_philly_day1_traj.jpg">
+<img src="../figs/gt_maps/west_philly_day2_traj.jpg" alt="west_philly_day2" style="max-height:150px"/>
+</a>
 </td>
 </tr>
 <tr>
@@ -80,6 +91,11 @@ West Philadelphia Day 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_d
 <td>
 West Philadelphia Night 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night1_data.bag">Data (8.1G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night1_gt.bag">Ground truth (9.5G)</a>
 </td>
+<td>
+<a target="_blank" href="../figs/gt_maps/west_philly_night1_traj.jpg">
+<img src="../figs/gt_maps/west_philly_night1_traj.jpg" alt="west_philly_night1" style="max-height:150px"/>
+</a>
+</td>
 </tr>
 <tr>
 <td>
@@ -89,6 +105,11 @@ West Philadelphia Night 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor
 <td>
 West Philadelphia Night 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night2_data.bag">Data (11G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night2_gt.bag">Ground truth (11G)</a>
 </td>
+<td>
+<a target="_blank" href="../figs/gt_maps/west_philly_night2_traj.jpg">
+<img src="../figs/gt_maps/west_philly_night2_traj.jpg" alt="west_philly_night2" style="max-height:150px"/>
+</a>
+</td>
 </tr>
 <tr>
 <td>
@@ -97,6 +118,11 @@ West Philadelphia Night 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor
 </td>
 <td>
 West Philadelphia Night 3 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night3_data.bag">Data (9G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night3_gt.bag">Ground truth (11G)</a>
+</td>
+<td>
+<a target="_blank" href="../figs/gt_maps/west_philly_night3_traj.jpg">
+<img src="../figs/gt_maps/west_philly_night3_traj.jpg" alt="west_philly_night3" style="max-height:150px"/>
+</a>
 </td>
 </tr>
 </table>

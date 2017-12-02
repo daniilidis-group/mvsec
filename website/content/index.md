@@ -8,10 +8,6 @@ weight: 0
 
 <img src="figs/sensor_mounts.jpg" alt="Sensors mounted on multiple vehicles." style="height: 250px;"/>
 
-This website is currently being built while we are waiting to get the
-data storage online. Please check back soon!
-
-
 The Multi Vehicle Stereo Event Camera dataset is a collection of data designed for the development of novel 3D perception algorithms for **event based cameras**. Stereo event data is collected from car, motorbike, hexacopter and handheld data, and fused with lidar, IMU, motion capture and GPS to provide ground truth pose and depth images. In addition, we provide images from a standard stereo frame based camera pair for comparison with traditional techniques.
 
 Event based cameras are a new **asynchronous** sensing modality that measure changes in image intensity. When the log intensity over a pixel changes above a set threshold, the camera **immediately** returns the pixel location of a change, along with a timestamp with **microsecond** accuracy, and the direction of the change (up or down). This allows for sensing with extremely low latency. In addition, the cameras have extremely **high dynamic range** and **low power usage**.

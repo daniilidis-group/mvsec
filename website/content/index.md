@@ -4,7 +4,7 @@ title: The MVSEC Data Set
 type: index
 weight: 0
 ---
-## The Multi View Stereo Event Camera Dataset
+## The Multi Vehicle Stereo Event Camera Dataset
 
 <img src="figs/sensor_mounts.jpg" alt="Sensors mounted on multiple vehicles." style="height: 250px;"/>
 

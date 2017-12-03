@@ -161,7 +161,7 @@ The full set of sensor characteristics can be found below:
 &lt;ul&gt;
 &lt;li&gt;Skybotix integrated VI-sensor&lt;/li&gt;
 &lt;li&gt;stereo camera: 2 x Aptina MT9V034&lt;/li&gt;
-&lt;li&gt;gray 2x752x480 at 20fps (rectified), global shutter&lt;/li&gt;
+&lt;li&gt;gray 2x752x480 at 20fps, global shutter&lt;/li&gt;
 &lt;li&gt;FOV: 57deg vert., 2 x 80deg horiz.&lt;/li&gt;
 &lt;li&gt;IMU: ADIS16488 at 200Hz&lt;/li&gt;
 &lt;/ul&gt;

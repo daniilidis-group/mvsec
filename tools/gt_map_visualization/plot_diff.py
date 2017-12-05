@@ -46,7 +46,7 @@ if __name__ == '__main__':
         print "error: number of files %d must match number of colors %d" % (len(files), len(colors))
         exit(-1)
 
-    plt.rcParams.update({'font.size': 22})
+    plt.rcParams.update({'font.size': 36})
     fig  = plt.figure(figsize=(40,30))
     ax   = fig.add_subplot(111)
     ref  = np.loadtxt(files[0])
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     axes.set_ylim([args.ymin, args.ymax])
     axes.set_xlim([0, ref[-1,0]-t0])
     if args.legend:
-        ax.legend(loc='upper center', shadow = True)
+        ax.legend(loc='upper left', shadow = True)
     if args.title:
         plt.title(args.title)
     plt.xlabel('time [s]')

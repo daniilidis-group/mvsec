@@ -22,5 +22,14 @@ Here is how to create visualizations of the outdoor sequences from the ground tr
 
     	./traj_to_gpsvisualizer.py  --files gps_traj.txt,loam_traj_align.txt,cartographer_traj_align.txt --legend GPS,LOAM,Cartographer --colors cyan,blue,red > gps_visualizer.txt
 
-   This file can be directly used for upload at [GPS Visualizer](http://www.gpsvisualizer.com/).
+   This file can be directly used for upload at [GPS Visualizer](http://www.gpsvisualizer.com/). Use "height=1000" and width="auto".
+   This is the command line to generate the graph for the RAL paper:
+   
+        ./traj_to_gpsvisualizer.py  --files gps_traj.txt,cartographer_traj_align.txt --legend GPS,Cartographer --colors cyan,red --fatstart 433 --fatend 471 --linewidth 2 > gps_visualizer.txt
+
+# Creating distnnce plots
+
+   Here is how oo plot distance between e.g. cartographer and gps trajectories (used for RAL paper):
+
+   ./plot_diff.py  --files gps_traj.txt,cartographer_traj_align.txt --legend GPS,'distance |GPS-fused|' --colors cyan,red --ymax 30 --fatstart 433 --fatend 471
 

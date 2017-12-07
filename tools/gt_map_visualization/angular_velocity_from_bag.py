@@ -31,7 +31,7 @@ if __name__ == '__main__':
     for bagfile in glob.glob(args.bagfile):
         bag = rosbag.Bag(bagfile, 'r')
         topics = ["/davis/right/imu"]
-#        topics = ["/davis/left/imu"]
+#       topics = ["/davis/left/imu"]
 #        topics = ["/imu0"]
         iterator = bag.read_messages(topics=topics, start_time=args.start)
         for (topic, msg, time) in iterator:
@@ -49,10 +49,10 @@ if __name__ == '__main__':
                 w_max = w_len
             w_avg = w_avg + w_vec
             cnt  = cnt + 1
-            print "%f %f %f %f %f" % (t, w_vec[0], w_vec[1], w_vec[2], w_len)
+#            print "%f %f %f %f %f" % (t, w_vec[0], w_vec[1], w_vec[2], w_len)
 
-#    print "avg ang velocity: "  + str(w_avg / cnt)
-#    print "max ang velocity: %f"  % (w_max)
+    print "avg ang velocity: "  + str(w_avg / cnt)
+    print "max ang velocity: %f"  % (w_max)
     
                 
                     

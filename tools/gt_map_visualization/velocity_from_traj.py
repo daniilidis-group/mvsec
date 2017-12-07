@@ -42,7 +42,7 @@ if __name__ == '__main__':
     a = np.transpose(np.vstack([t, vabs, vabsa]))
 
     imax = np.argmax(vabsa)
-#    print "max avg velocity: %f m/s = %f km/h = %f mph at time: %f" % (vabsa[imax], vabsa[imax]*3.6, vabsa[imax]*2.23694, t[imax])
+    print "max avg velocity: %f m/s = %f km/h = %f mph at time: %f" % (vabsa[imax], vabsa[imax]*3.6, vabsa[imax]*2.23694, t[imax])
 
-    for row in a:
-        print "%f  %f %f" % (row[0], row[1], row[2])
+#    for row in a:
+#        print "%f  %f %f" % (row[0], row[1], row[2])

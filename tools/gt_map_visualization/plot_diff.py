@@ -37,7 +37,7 @@ if __name__ == '__main__':
     width   = 2
     tfatstart = float(args.fatstart)
     tfatend   = float(args.fatend)
-    fatwidth = width * 3
+    fatwidth = width * 4
 
     if (len(legends) != len(files)):
         print "error: number of files %d must match number of legend items %d" % (len(files), len(legends))
@@ -46,9 +46,10 @@ if __name__ == '__main__':
         print "error: number of files %d must match number of colors %d" % (len(files), len(colors))
         exit(-1)
 
-    plt.rcParams.update({'font.size': 36})
-    fig  = plt.figure(figsize=(40,30))
+    plt.rcParams.update({'font.size': 48})
+    fig  = plt.figure(figsize=(40,50))
     ax   = fig.add_subplot(111)
+    ax.set_aspect(17)
     ref  = np.loadtxt(files[0])
     t0   = ref[0,0]
     t    = ref[:,0]-t0
@@ -61,9 +62,9 @@ if __name__ == '__main__':
             d  = np.sqrt(np.square(xi-ref[:,4]) + np.square(yi - ref[:, 8]))
             imax = np.argmax(d)
             print "%s largest error: %f at index: %d, time: %f" % (n, d[imax], imax, t[imax])
-            h  = add_to_plot(ax, t[t<= tfatstart], d[t<= tfatstart], c, n, width)
+            h  = add_to_plot(ax, t, d, c, n, width)
             h  = add_to_plot(ax, t[(t>= tfatstart) & (t<=tfatend)], d[(t>= tfatstart) & (t <=tfatend)], c, None, fatwidth)
-            h  = add_to_plot(ax, t[t>= tfatend], d[t>= tfatend], c, None, width)
+    #        h  = add_to_plot(ax, t[t>= tfatend], d[t>= tfatend], c, None, width)
 
     axes = plt.gca()
     axes.set_ylim([args.ymin, args.ymax])

@@ -126,7 +126,7 @@ West Philadelphia Night 3 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor
 </td>
 </tr>
 <tr>
-<td>Motorcycle (Note: No lidar.)</td>
+<td>Motorcycle (Note: No lidar).</td>
 <td>
 <a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_calib.zip">Calibration</a>
 </td>

@@ -125,6 +125,15 @@ West Philadelphia Night 3 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor
 </a>
 </td>
 </tr>
+<tr>
+<td>Motorcycle (Note: No lidar.)</td>
+<td>
+<a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_calib.zip">Calibration</a>
+</td>
+<td>
+Highway 1 <a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_data.bag">Data (42G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_gt.bag">Ground truth (659K)</a>
+</td>
+</tr>
 </table>
 </div>
 

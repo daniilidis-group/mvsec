@@ -48,7 +48,7 @@ y_rect = outdoor_day_left_y(y, x)&lt;/p&gt;
     &lt;li&gt;Resolution&lt;/li&gt;
     &lt;li&gt;The ROS topic corresponding to this camera&lt;/li&gt;
     &lt;li&gt;T_cam_imu: The 4x4 transformation that takes a point from this camera&amp;rsquo;s IMU frame (where applicable) to this camera&amp;rsquo;s camera frame.&lt;/li&gt;
-    &lt;li&gt;T_cn_cnm1: The 4x4 transformation that takes a point from this camera&amp;rsquo;s camera frame to the previous camera&amp;rsquo;s camera frame (e.g. cam2-&amp;gt;cam1, cam1-&amp;gt;cam0).&lt;/li&gt;
+    &lt;li&gt;T_cn_cnm1: The 4x4 transformation that takes a point in the previous camera&amp;rsquo;s camera frame to this camera&amp;rsquo;s camera frame (e.g. cam0-&amp;gt;cam1, cam1-&amp;gt;cam2).&lt;/li&gt;
   &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;&lt;/p&gt;

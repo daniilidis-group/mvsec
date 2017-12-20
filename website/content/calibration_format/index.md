@@ -33,7 +33,7 @@ Each scene (corresponding to a single day of recording) has its own calibration 
     <li>Resolution</li>
     <li>The ROS topic corresponding to this camera</li>
     <li>T_cam_imu: The 4x4 transformation that takes a point from this camera's IMU frame (where applicable) to this camera's camera frame.</li>
-    <li>T_cn_cnm1: The 4x4 transformation that takes a point from this camera's camera frame to the previous camera's camera frame (e.g. cam2->cam1, cam1->cam0).</li>
+    <li>T_cn_cnm1: The 4x4 transformation that takes a point in the previous camera's camera frame to this camera's camera frame (e.g. cam0->cam1, cam1->cam2).</li>
   </ul>
   </li>
 </ul>

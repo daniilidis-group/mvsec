@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>gt_flow</name>
+  <version>0.0.0</version>
+  <description>tools to compute ground truth flow from motion field</description>
+
+  <maintainer email="bernd.pfrommer@gmail.com">Bernd Pfrommer</maintainer>
+
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>catkin_simple</buildtool_depend>
+  <depend>nodelet</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msg</depend>
+  <depend>odom_msg</depend>
+  <depend>message_filters</depend>
+  <depend>opencv</depend>
+  <depend>cv_bridge</depend>
+  <depend>eigen</depend>
+  <depend>eigen_conversions</depend>
+  <depend>image_transport</depend>
+  <depend>image_geometry</depend>
+  <depend>tf</depend>
+  <depend>pcl_ros</depend>
+  <depend>pcl_conversions</depend>
+
+  <export>
+    <nodelet plugin="${prefix}/nodelet_plugin.xml"/>
+  </export>
+</package>

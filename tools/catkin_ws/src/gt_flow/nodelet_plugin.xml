@@ -1,0 +1,9 @@
+<library path="lib/libgt_flow_nodelet">
+  <class name="gt_flow/GTFlowNodelet"
+         type="gt_flow::GTFlowNodelet"
+         base_class_type="nodelet::Nodelet">
+    <description>
+      ground truth flow nodelet
+    </description>
+  </class>
+</library>

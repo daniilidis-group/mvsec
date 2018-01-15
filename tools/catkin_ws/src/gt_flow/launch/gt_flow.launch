@@ -1,0 +1,9 @@
+<launch>
+  <node pkg="nodelet" type="nodelet"
+    name="gt_flow" args="standalone gt_flow/GTFlowNodelet"
+    clear_params="true" output="screen">
+    <remap from="~depth_image_rect" to="/davis/left/depth_image_rect"/>
+    <remap from="~pose" to="/davis/left/odometry"/>
+    <remap from="~camera_info" to="/davis/left/camera_info"/>
+  </node>
+</launch>

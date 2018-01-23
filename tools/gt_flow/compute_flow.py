@@ -1,11 +1,49 @@
 """ Computes optical flow from two poses and depth images """
 
 import numpy as np
-import quaternion as quat
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
+try:
+    from quaternion import quaternion
+except ImportError:
+    class quaternion:
+        def __init__(self,w,x,y,z):
+            self.w = w
+            self.x = x
+            self.y = y
+            self.z = z
+    
+        def norm(self):
+            return self.w**2 + self.x**2 + self.y**2 + self.z**2
+    
+        def inverse(self):
+            qnorm = self.norm()
+            return quaternion(self.w/qnorm,
+                              -self.x/qnorm,
+                              -self.y/qnorm,
+                              -self.z/qnorm)
+    
+        def __mul__(q1, q2):
+            r = quaternion(q1.w*q2.w - q1.x*q2.x - q1.y*q2.y - q1.z*q2.z,
+                           q1.w*q2.x + q1.x*q2.w + q1.y*q2.z - q1.z*q2.y,
+                           q1.w*q2.y - q1.x*q2.z + q1.y*q2.w + q1.z*q2.x,
+                           q1.w*q2.z + q1.x*q2.y - q1.y*q2.x + q1.z*q2.w)
+            return r
+    
+        def __rmul__(q1, s):
+            return quaternion(q1.w*s, q1.x*s, q1.y*s, q1.z*s)
+    
+        def __sub__(q1, q2):
+            r = quaternion(q1.w-q2.w,
+                           q1.x-q2.x,
+                           q1.y-q2.y,
+                           q1.z-q2.z)
+            return r
+    
+        def __div__(q1, s):
+            return quaternion(q1.w/s, q1.x/s, q1.y/s, q1.z/s)
 
 class Flow:
     """
@@ -77,9 +115,9 @@ class Flow:
         p0 = np.array([P0.pose.position.x,P0.pose.position.y,P0.pose.position.z])
         p1 = np.array([P1.pose.position.x,P1.pose.position.y,P1.pose.position.z])
 
-        q0 = quat.quaternion(P0.pose.orientation.w, P0.pose.orientation.x,
+        q0 = quaternion(P0.pose.orientation.w, P0.pose.orientation.x,
                              P0.pose.orientation.y, P0.pose.orientation.z)
-        q1 = quat.quaternion(P1.pose.orientation.w, P1.pose.orientation.x,
+        q1 = quaternion(P1.pose.orientation.w, P1.pose.orientation.x,
                              P1.pose.orientation.y, P1.pose.orientation.z)
 
         V, Omega = self.compute_velocity(p0, q0, p1, q1, dt)
@@ -180,7 +218,7 @@ def test_gt_flow():
     gtf = Flow(cal)
     
     p0 = np.array([0.,0.,0.])
-    q0 = quat.quaternion(1.0,0.0,0.0,0.0)
+    q0 = quaternion(1.0,0.0,0.0,0.0)
 
     depth = 10.*np.ones((cal.left_map.shape[0],cal.left_map.shape[1]))
 
@@ -191,7 +229,7 @@ def test_gt_flow():
     gtf.visualize_flow(x,y,fig)
 
     p1 = np.array([0.,1.,0.])
-    q1 = quat.quaternion(1.0,0.0,0.0,0.0)
+    q1 = quaternion(1.0,0.0,0.0,0.0)
 
     V, Omega = gtf.compute_velocity(p0,q0,p1,q1,0.1)
     print V, Omega

@@ -1,7 +1,12 @@
 from __future__ import print_function
 
 import os
-import wget
+try:
+    import wget
+    HAS_WGET=True
+except ImportError:
+    import subprocess
+    HAS_WGET=False
 
 MVSEC_URL="http://visiondata.cis.upenn.edu/mvsec"
 
@@ -32,7 +37,13 @@ def download(urls, filenames, overwrite=False):
         if not os.path.exists(fn) or overwrite:
             if not os.path.exists(os.path.dirname(fn)):
                 os.makedirs(os.path.dirname(fn))
-            wget.download(url, fn)
+            if HAS_WGET:
+                wget.download(url, fn)
+            else:
+                subprocess.call(['wget',
+                    '--no-check-certificate',
+                    url,
+                    '-O', fn])
 
 def get_calibration(experiment, overwrite=False):
     assert experiment in experiments

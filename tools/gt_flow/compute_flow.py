@@ -40,7 +40,7 @@ class Flow:
 
         self.hsv_buffer = None
 
-    def compute_flow_single_frame(self, V, Omega, depth_image):
+    def compute_flow_single_frame(self, V, Omega, depth_image, dt):
         """
         params:
             V : [3,1]
@@ -82,7 +82,8 @@ class Flow:
         q1 = quat.quaternion(P1.pose.orientation.w, P1.pose.orientation.x,
                              P1.pose.orientation.y, P1.pose.orientation.z)
 
-        return self.compute_velocity(p0, q0, p1, q1, dt)
+        V, Omega = self.compute_velocity(p0, q0, p1, q1, dt)
+        return V, Omega, dt
 
     def compute_velocity(self, p0, q0, p1, q1, dt):
         V = (p1-p0)/dt
@@ -121,8 +122,12 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
     flow = Flow(cal)
     P0 = None
 
-    x_flow_list = []
-    y_flow_list = []
+    nframes = len(gt.left_cam_readers['/davis/left/depth_image_rect'])
+
+    depth_image, _ = gt.left_cam_readers['/davis/left/depth_image_rect'](0)
+    flow_shape = (nframes, depth_image.shape[0], depth_image.shape[1])
+    x_flow_list = np.zeros(flow_shape)
+    y_flow_list = np.zeros(flow_shape)
 
     print "Computing depth"
     for frame_num in range(len(gt.left_cam_readers['/davis/left/depth_image_rect'])):
@@ -131,13 +136,10 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
         P1 = gt.left_cam_readers['/davis/left/odometry'][frame_num].message
 
         if P0 is not None:
-            V, Omega = flow.compute_velocity_from_msg(P0, P1)
-            flow_x, flow_y = flow.compute_flow_single_frame(V, Omega, depth_image.img)
-            x_flow_list.append(flow_x)
-            y_flow_list.append(flow_y)
-        else:
-            x_flow_list.append(np.zeros(depth_image.shape))
-            y_flow_list.append(np.zeros(depth_image.shape))
+            V, Omega, dt = flow.compute_velocity_from_msg(P0, P1)
+            flow_x, flow_y = flow.compute_flow_single_frame(V, Omega, depth_image.img, dt)
+            x_flow_list[frame_num,:,:] = flow_x
+            y_flow_list[frame_num,:,:] = flow_y
 
         depth_image.release()
         P0 = P1
@@ -148,7 +150,7 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
 
     if save_numpy:
         print "Saving numpy"
-        numpy_name = base_name+"flow.npz"
+        numpy_name = base_name+"_gt_flow.npz"
         np.savez(numpy_name, x_flow_list=x_flow_list, y_flow_list=y_flow_list)
 
     if save_movie:
@@ -165,7 +167,7 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
             return im,
 
         ani = animation.FuncAnimation(fig, updatefig, frames=len(x_flow_list))
-        movie_path = base_name+"flow.mp4"
+        movie_path = base_name+"_gt_flow.mp4"
         ani.save(movie_path)
         plt.show()
 
@@ -183,7 +185,7 @@ def test_gt_flow():
     depth = 10.*np.ones((cal.left_map.shape[0],cal.left_map.shape[1]))
 
     V, Omega = gtf.compute_velocity(p0,q0,p0,q0,0.1)
-    x,y = gtf.compute_flow_single_frame(V, Omega, depth)
+    x,y = gtf.compute_flow_single_frame(V, Omega, depth,0.1)
 
     fig = plt.figure()
     gtf.visualize_flow(x,y,fig)
@@ -193,7 +195,7 @@ def test_gt_flow():
 
     V, Omega = gtf.compute_velocity(p0,q0,p1,q1,0.1)
     print V, Omega
-    x,y = gtf.compute_flow_single_frame(V, Omega, depth)
+    x,y = gtf.compute_flow_single_frame(V, Omega, depth,0.1)
     plt.figure()
     plt.imshow(x)
     plt.figure()

@@ -65,9 +65,8 @@ class Flow:
         flat_y_flow_out[mask] = fdm * (fym*V[2]-V[1])
         flat_y_flow_out[mask] +=  np.squeeze(np.dot(omm[:,1,:], Omega))
 
-        x_flow_out = (x_flow_out*self.fx)
-
-        y_flow_out = (y_flow_out*self.fx)
+        x_flow_out = (x_flow_out*self.fx)*dt
+        y_flow_out = (y_flow_out*self.fx)*dt
 
         return x_flow_out, y_flow_out
 
@@ -112,7 +111,7 @@ class Flow:
         ax1.imshow( self.colorize_image(flow_x, flow_y) )
 
 
-def experiment_flow(experiment_name, experiment_num, save_movie=True):
+def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy=True):
     import time
     import calibration
     cal = calibration.Calibration(experiment_name)
@@ -136,14 +135,26 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True):
             flow_x, flow_y = flow.compute_flow_single_frame(V, Omega, depth_image.img)
             x_flow_list.append(flow_x)
             y_flow_list.append(flow_y)
-            plt.close('all')
+        else:
+            x_flow_list.append(np.zeros(depth_image.shape))
+            y_flow_list.append(np.zeros(depth_image.shape))
 
         depth_image.release()
         P0 = P1
 
+    import downloader
+    import os
+    base_name = os.path.join(downloader.get_tmp(), experiment_name, experiment_name+str(experiment_num))
+
+    if save_numpy:
+        print "Saving numpy"
+        numpy_name = base_name+"flow.npz"
+        np.savez(numpy_name, x_flow_list=x_flow_list, y_flow_list=y_flow_list)
+
     if save_movie:
         print "Saving movie"
         import matplotlib.animation as animation
+        plt.close('all')
    
         fig = plt.figure()
         first_img = flow.colorize_image(x_flow_list[0], y_flow_list[0])
@@ -152,11 +163,9 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True):
         def updatefig(frame_num, *args):
             im.set_data(flow.colorize_image(x_flow_list[frame_num], y_flow_list[frame_num]))
             return im,
-        
+
         ani = animation.FuncAnimation(fig, updatefig, frames=len(x_flow_list))
-        import downloader
-        import os
-        movie_path = os.path.join(downloader.get_tmp(), experiment_name, experiment_name+str(experiment_num)+".mp4")
+        movie_path = base_name+"flow.mp4"
         ani.save(movie_path)
         plt.show()
 

@@ -4,7 +4,7 @@ project(gt_flow)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++14 -Wall")
 
 find_package(catkin_simple REQUIRED)
-find_package(PCL 1.8 REQUIRED)
+find_package(PCL REQUIRED)
 
 catkin_simple()
 

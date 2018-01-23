@@ -2,6 +2,8 @@
 
 import numpy as np
 import quaternion as quat
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 
@@ -110,7 +112,7 @@ class Flow:
         ax1.imshow( self.colorize_image(flow_x, flow_y) )
 
 
-def experiment_flow(experiment_name, experiment_num):
+def experiment_flow(experiment_name, experiment_num, save_movie=True):
     import time
     import calibration
     cal = calibration.Calibration(experiment_name)
@@ -123,6 +125,7 @@ def experiment_flow(experiment_name, experiment_num):
     x_flow_list = []
     y_flow_list = []
 
+    print "Computing depth"
     for frame_num in range(len(gt.left_cam_readers['/davis/left/depth_image_rect'])):
         depth_image = gt.left_cam_readers['/davis/left/depth_image_rect'][frame_num]
         depth_image.acquire()
@@ -135,21 +138,27 @@ def experiment_flow(experiment_name, experiment_num):
             y_flow_list.append(flow_y)
             plt.close('all')
 
+        depth_image.release()
         P0 = P1
 
-    import matplotlib.animation as animation
+    if save_movie:
+        print "Saving movie"
+        import matplotlib.animation as animation
    
-    fig = plt.figure()
-    first_img = flow.colorize_image(x_flow_list[0], y_flow_list[0])
-    im = plt.imshow(first_img, animated=True)
-    
-    def updatefig(frame_num, *args):
-        im.set_data(flow.colorize_image(x_flow_list[frame_num], y_flow_list[frame_num]))
-        return im,
-    
-    ani = animation.FuncAnimation(fig, updatefig, frames=len(x_flow_list))
-    ani.save("flow.mp4")
-    plt.show()
+        fig = plt.figure()
+        first_img = flow.colorize_image(x_flow_list[0], y_flow_list[0])
+        im = plt.imshow(first_img, animated=True)
+        
+        def updatefig(frame_num, *args):
+            im.set_data(flow.colorize_image(x_flow_list[frame_num], y_flow_list[frame_num]))
+            return im,
+        
+        ani = animation.FuncAnimation(fig, updatefig, frames=len(x_flow_list))
+        import downloader
+        import os
+        movie_path = os.path.join(downloader.get_tmp(), experiment_name, experiment_name+str(experiment_num)+".mp4")
+        ani.save(movie_path)
+        plt.show()
 
 def test_gt_flow():
     import calibration

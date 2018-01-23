@@ -15,6 +15,9 @@ def set_tmp(new_tmp):
     else:
         assert os.path.isdir(TMP_FOLDER)
 
+def get_tmp():
+    return TMP_FOLDER
+
 set_tmp(os.path.expanduser('~/mvsec_data'))
 
 experiments = ["indoor_flying", "outdoor_day",

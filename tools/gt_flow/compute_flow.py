@@ -5,6 +5,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
+from scipy.linalg import logm
 try:
     from quaternion import quaternion
 except ImportError:
@@ -88,7 +89,7 @@ class Flow:
         flat_depth = depth_image.ravel()
         mask = np.isfinite(flat_depth)
 
-        fdm = flat_depth[mask]
+        fdm = 1./flat_depth[mask]
         fxm = self.flat_x_map[mask]
         fym = self.flat_y_map[mask]
         omm = self.omega_mat[mask,:,:]
@@ -114,41 +115,45 @@ class Flow:
                       [2*q.x*q.z+2*q.w*q.y, 2*q.y*q.z-2*q.w*q.x, 1-2*q.x**2-2*q.y**2]])
         return R
 
-    def compute_velocity_from_msg(self, P0, P1):
-        t0 = P0.header.stamp.to_sec()
-        t1 = P1.header.stamp.to_sec()
-        dt = t1 - t0
-        p0 = np.array([P0.pose.position.x,P0.pose.position.y,P0.pose.position.z])
-        q0 = quaternion(P0.pose.orientation.w, P0.pose.orientation.x,
-                             P0.pose.orientation.y, P0.pose.orientation.z)
+    def p_q_t_from_msg(self, msg):
+        p = np.array([msg.pose.position.x,msg.pose.position.y,msg.pose.position.z])
+        q = quaternion(msg.pose.orientation.w, msg.pose.orientation.x,
+                            msg.pose.orientation.y, msg.pose.orientation.z)
+        t = msg.header.stamp.to_sec()
+        return p, q, t
 
-        p1 = np.array([P1.pose.position.x,P1.pose.position.y,P1.pose.position.z])
-        q1 = quaternion(P1.pose.orientation.w, P1.pose.orientation.x,
-                             P1.pose.orientation.y, P1.pose.orientation.z)
+    def compute_velocity_from_msg(self, P0, P1):
+        p0, q0, t0 = self.p_q_t_from_msg(P0)
+        p1, q1, t1 = self.p_q_t_from_msg(P1)
+
+        # Not sure why we need to transpose
+        R0 = self.rot_mat_from_quaternion(q0).T
+        R1 = self.rot_mat_from_quaternion(q1).T
+
+        dt = t1 - t0
 
         # compute H0^-1
-        inv = q0.inverse()
-        p0 = np.dot(self.rot_mat_from_quaternion(q0),-p0)
-        q0 = inv
+        H0_inv_p = np.dot(R0,-p0)
+        H0_inv_R = R0.T
 
         # set H1 to H0^-1 * H1
-        p1 = p0 + np.dot(self.rot_mat_from_quaternion(q0),p1)
-        q1 = q0 * q1
+        H1_p = np.dot(H0_inv_R, p1-p0)
+        H1_R = np.dot(H0_inv_R, R1)
 
-        # Set H0 to I
-        p0 = np.zeros(p0.shape)
-        q0 = quaternion(1.0, 0.0, 0.0, 0.0)
+        V = H1_p/dt
 
-        V, Omega = self.compute_velocity(p0, q0, p1, q1, dt)
+        w_hat = logm(np.dot(R0.T, R1)) / dt
+        Omega = np.array([w_hat[2,1], w_hat[0,2], w_hat[1,0]])
+
         return V, Omega, dt
 
     def compute_velocity(self, p0, q0, p1, q1, dt):
         V = (p1-p0)/dt
 
-        dqdt = (q1-q0)/dt
+        R_dot = ( self.rot_mat_from_quaternion(q1) - self.rot_mat_from_quaternion(q0) )/dt
+        w_hat = np.dot(R_dot, self.rot_mat_from_quaternion(q1).T)
 
-        Omega = 2.*dqdt*q1.inverse()
-        Omega = np.array([Omega.x, Omega.y, Omega.z])
+        Omega = np.array([w_hat[2,1], w_hat[0,2], w_hat[1,0]])
 
         return V, Omega
 
@@ -160,8 +165,7 @@ class Flow:
 
         self.hsv_buffer[:,:,2] = np.linalg.norm( np.stack((flow_x,flow_y), axis=0), axis=0 )
 
-        flat = self.hsv_buffer[:,:,2].reshape((-1))
-        flat[flat>20.] = 20.
+        self.hsv_buffer[:,:,2] = np.log(1. + self.hsv_buffer[:,:,2]) # hopefully better overall dynamic range in final video
 
         m = np.nanmax(self.hsv_buffer[:,:,2])
         if not np.isclose(m, 0.0):
@@ -173,7 +177,7 @@ class Flow:
         ax1.imshow( self.colorize_image(flow_x, flow_y) )
 
 
-def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy=True):
+def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy=True, start_ind=None, stop_ind=None):
     if experiment_name == "motorcycle":
         print "The motorcycle doesn't have lidar and we can't compute flow without it"
         return
@@ -188,42 +192,79 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
     P0 = None
 
     nframes = len(gt.left_cam_readers['/davis/left/depth_image_rect'])
+    if stop_ind is not None:
+        stop_ind = min(nframes, stop_ind)
+    else:
+        stop_ind = nframes
+
+    if start_ind is not None:
+        start_ind = max(0, start_ind)
+    else:
+        start_ind = 0
+
+    nframes = stop_ind - start_ind
+
 
     depth_image, _ = gt.left_cam_readers['/davis/left/depth_image_rect'](0)
     flow_shape = (nframes, depth_image.shape[0], depth_image.shape[1])
     x_flow_tensor = np.zeros(flow_shape, dtype=np.float)
     y_flow_tensor = np.zeros(flow_shape, dtype=np.float)
     timestamps = np.zeros((nframes,), dtype=np.float)
-    Vs = np.zeros((nframes,3))
-    Omegas = np.zeros((nframes,3))
+    Vs = np.zeros((nframes,3), dtype=np.float)
+    Omegas = np.zeros((nframes,3), dtype=np.float)
+    dTs = np.zeros((nframes,), dtype=np.float)
+
+    ps = np.zeros((nframes,3), dtype=np.float)
+    qs = np.zeros((nframes,4), dtype=np.float)
 
     sOmega = np.zeros((3,))
     sV = np.zeros((3,))
-    alpha = 0.1
 
-    print "Computing depth"
-    for frame_num in range(len(gt.left_cam_readers['/davis/left/depth_image_rect'])):
-        depth_image = gt.left_cam_readers['/davis/left/depth_image_rect'][frame_num]
-        depth_image.acquire()
-        P1 = gt.left_cam_readers['/davis/left/odometry'][frame_num].message
+    print "Extracting velocity"
+    for frame_num in range(nframes):
+        P1 = gt.left_cam_readers['/davis/left/odometry'][frame_num+start_ind].message
 
         if P0 is not None:
             V, Omega, dt = flow.compute_velocity_from_msg(P0, P1)
 
-            sOmega = alpha * Omega + (1-alpha)*sOmega
-            sV = alpha * V + (1-alpha)*sV
+            Vs[frame_num, :] = V
+            Omegas[frame_num, :] = Omega
+            dTs[frame_num] = dt
 
-            flow_x, flow_y = flow.compute_flow_single_frame(sV, sOmega, depth_image.img, dt)
-            x_flow_tensor[frame_num,:,:] = flow_x
-            y_flow_tensor[frame_num,:,:] = flow_y
-            timestamps[frame_num] = P1.header.stamp.to_sec()
-            Vs[frame_num, :] = sV
-            Omegas[frame_num, :] = sOmega
+        timestamps[frame_num] = P1.header.stamp.to_sec()
+
+        tmp_p, tmp_q, _ = flow.p_q_t_from_msg(P1)
+        ps[frame_num, :] = tmp_p
+        qs[frame_num, 0] = tmp_q.w
+        qs[frame_num, 0] = tmp_q.x
+        qs[frame_num, 0] = tmp_q.y
+        qs[frame_num, 0] = tmp_q.z
+
+        P0 = P1
+
+    filter_size = 10
+
+    print "Computing flow"
+    for frame_num in range(nframes):
+        depth_image = gt.left_cam_readers['/davis/left/depth_image_rect'][frame_num+start_ind]
+        depth_image.acquire()
+
+        if frame_num-filter_size < 0:
+            V = np.mean(Vs[0:frame_num+filter_size+1,:],axis=0)
+            Omega = np.mean(Omegas[0:frame_num+filter_size+1,:], axis=0)
+        elif frame_num+filter_size >= nframes:
+            V = np.mean(Vs[frame_num-filter_size:nframes,:],axis=0)
+            Omega = np.mean(Omegas[frame_num-filter_size:nframes,:], axis=0)
         else:
-            timestamps[frame_num] = P1.header.stamp.to_sec()
+            V = np.mean(Vs[frame_num-filter_size:frame_num+filter_size+1,:],axis=0)
+            Omega = np.mean(Omegas[frame_num-filter_size:frame_num+filter_size+1,:], axis=0)
+        dt = dTs[frame_num]
+
+        flow_x, flow_y = flow.compute_flow_single_frame(V, Omega, depth_image.img, dt)
+        x_flow_tensor[frame_num,:,:] = flow_x
+        y_flow_tensor[frame_num,:,:] = flow_y
 
         depth_image.release()
-        P0 = P1
 
     import downloader
     import os
@@ -232,7 +273,8 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
     if save_numpy:
         print "Saving numpy"
         numpy_name = base_name+"_gt_flow.npz"
-        np.savez(numpy_name, ts=timestamps, x_flow_tensor=x_flow_tensor, y_flow_tensor=y_flow_tensor, Vs=Vs, Omegas=Omegas)
+        np.savez(numpy_name, ts=timestamps, x_flow_tensor=x_flow_tensor, y_flow_tensor=y_flow_tensor,
+                             Vs=Vs, Omegas=Omegas, ps=ps, qs=qs)
 
     if save_movie:
         print "Saving movie"
@@ -273,16 +315,22 @@ def test_gt_flow():
     fig = plt.figure()
     gtf.visualize_flow(x,y,fig)
 
-    p1 = np.array([0.,1.,0.])
+    p1 = np.array([0.,0.25,0.5])
     q1 = quaternion(1.0,0.0,0.0,0.0)
 
     V, Omega = gtf.compute_velocity(p0,q0,p1,q1,0.1)
     print V, Omega
     x,y = gtf.compute_flow_single_frame(V, Omega, depth,0.1)
-    plt.figure()
-    plt.imshow(x)
-    plt.figure()
-    plt.imshow(y)
+
+    fig = plt.figure()
+    gtf.visualize_flow(x,y,fig)
+
+    p1 = np.array([0.,-0.25,0.5])
+    q1 = quaternion(1.0,0.0,0.0,0.0)
+
+    V, Omega = gtf.compute_velocity(p0,q0,p1,q1,0.1)
+    print V, Omega
+    x,y = gtf.compute_flow_single_frame(V, Omega, depth,0.1)
 
     fig = plt.figure()
     gtf.visualize_flow(x,y,fig)

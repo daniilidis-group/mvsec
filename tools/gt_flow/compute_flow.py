@@ -107,18 +107,37 @@ class Flow:
         y_flow_out = (y_flow_out*self.fx)*dt
 
         return x_flow_out, y_flow_out
+    
+    def rot_mat_from_quaternion(self, q):
+        R = np.array([[1-2*q.y**2-2*q.z**2, 2*q.x*q.y+2*q.w*q.z, 2*q.x*q.z-2*q.w*q.y],
+                      [2*q.x*q.y-2*q.w*q.z, 1-2*q.x**2-2*q.z**2, 2*q.y*q.z+2*q.w*q.x],
+                      [2*q.x*q.z+2*q.w*q.y, 2*q.y*q.z-2*q.w*q.x, 1-2*q.x**2-2*q.y**2]])
+        return R
 
     def compute_velocity_from_msg(self, P0, P1):
         t0 = P0.header.stamp.to_sec()
         t1 = P1.header.stamp.to_sec()
         dt = t1 - t0
         p0 = np.array([P0.pose.position.x,P0.pose.position.y,P0.pose.position.z])
-        p1 = np.array([P1.pose.position.x,P1.pose.position.y,P1.pose.position.z])
-
         q0 = quaternion(P0.pose.orientation.w, P0.pose.orientation.x,
                              P0.pose.orientation.y, P0.pose.orientation.z)
+
+        p1 = np.array([P1.pose.position.x,P1.pose.position.y,P1.pose.position.z])
         q1 = quaternion(P1.pose.orientation.w, P1.pose.orientation.x,
                              P1.pose.orientation.y, P1.pose.orientation.z)
+
+        # compute H0^-1
+        inv = q0.inverse()
+        p0 = np.dot(self.rot_mat_from_quaternion(q0),-p0)
+        q0 = inv
+
+        # set H1 to H0^-1 * H1
+        p1 = p0 + np.dot(self.rot_mat_from_quaternion(q0),p1)
+        q1 = q0 * q1
+
+        # Set H0 to I
+        p0 = np.zeros(p0.shape)
+        q0 = quaternion(1.0, 0.0, 0.0, 0.0)
 
         V, Omega = self.compute_velocity(p0, q0, p1, q1, dt)
         return V, Omega, dt
@@ -140,6 +159,10 @@ class Flow:
         self.hsv_buffer[:,:,0] = (np.arctan2(flow_y,flow_x)+np.pi)/(2.0*np.pi)
 
         self.hsv_buffer[:,:,2] = np.linalg.norm( np.stack((flow_x,flow_y), axis=0), axis=0 )
+
+        flat = self.hsv_buffer[:,:,2].reshape((-1))
+        flat[flat>20.] = 20.
+
         m = np.nanmax(self.hsv_buffer[:,:,2])
         if not np.isclose(m, 0.0):
             self.hsv_buffer[:,:,2] /= m
@@ -171,6 +194,12 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
     x_flow_tensor = np.zeros(flow_shape, dtype=np.float)
     y_flow_tensor = np.zeros(flow_shape, dtype=np.float)
     timestamps = np.zeros((nframes,), dtype=np.float)
+    Vs = np.zeros((nframes,3))
+    Omegas = np.zeros((nframes,3))
+
+    sOmega = np.zeros((3,))
+    sV = np.zeros((3,))
+    alpha = 0.1
 
     print "Computing depth"
     for frame_num in range(len(gt.left_cam_readers['/davis/left/depth_image_rect'])):
@@ -180,10 +209,16 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
 
         if P0 is not None:
             V, Omega, dt = flow.compute_velocity_from_msg(P0, P1)
-            flow_x, flow_y = flow.compute_flow_single_frame(V, Omega, depth_image.img, dt)
+
+            sOmega = alpha * Omega + (1-alpha)*sOmega
+            sV = alpha * V + (1-alpha)*sV
+
+            flow_x, flow_y = flow.compute_flow_single_frame(sV, sOmega, depth_image.img, dt)
             x_flow_tensor[frame_num,:,:] = flow_x
             y_flow_tensor[frame_num,:,:] = flow_y
             timestamps[frame_num] = P1.header.stamp.to_sec()
+            Vs[frame_num, :] = sV
+            Omegas[frame_num, :] = sOmega
         else:
             timestamps[frame_num] = P1.header.stamp.to_sec()
 
@@ -197,7 +232,7 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
     if save_numpy:
         print "Saving numpy"
         numpy_name = base_name+"_gt_flow.npz"
-        np.savez(numpy_name, ts=timestamps, x_flow_tensor=x_flow_tensor, y_flow_tensor=y_flow_tensor)
+        np.savez(numpy_name, ts=timestamps, x_flow_tensor=x_flow_tensor, y_flow_tensor=y_flow_tensor, Vs=Vs, Omegas=Omegas)
 
     if save_movie:
         print "Saving movie"
@@ -216,6 +251,8 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
         movie_path = base_name+"_gt_flow.mp4"
         ani.save(movie_path)
         plt.show()
+
+    return x_flow_tensor, y_flow_tensor, timestamps, Vs, Omegas
 
 def test_gt_flow():
     import calibration

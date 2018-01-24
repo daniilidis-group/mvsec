@@ -87,6 +87,7 @@ class Flow:
             depth_image : [m,n]
         """
         flat_depth = depth_image.ravel()
+        flat_depth[np.logical_or(np.isclose(flat_depth,0.0), flat_depth<0.)]
         mask = np.isfinite(flat_depth)
 
         fdm = 1./flat_depth[mask]
@@ -165,11 +166,13 @@ class Flow:
 
         self.hsv_buffer[:,:,2] = np.linalg.norm( np.stack((flow_x,flow_y), axis=0), axis=0 )
 
-        self.hsv_buffer[:,:,2] = np.log(1. + self.hsv_buffer[:,:,2]) # hopefully better overall dynamic range in final video
+        self.hsv_buffer[:,:,2] = np.log(1.+self.hsv_buffer[:,:,2]) # hopefully better overall dynamic range in final video
 
-        m = np.nanmax(self.hsv_buffer[:,:,2])
+        flat = self.hsv_buffer[:,:,2].reshape((-1))
+        m = np.nanmax(flat[np.isfinite(flat)])
         if not np.isclose(m, 0.0):
             self.hsv_buffer[:,:,2] /= m
+
         return colors.hsv_to_rgb(self.hsv_buffer)
 
     def visualize_flow(self, flow_x, flow_y, fig):

@@ -151,6 +151,10 @@ class Flow:
 
 
 def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy=True):
+    if experiment_name == "motorcycle":
+        print "The motorcycle doesn't have lidar and we can't compute flow without it"
+        return
+
     import time
     import calibration
     cal = calibration.Calibration(experiment_name)
@@ -164,8 +168,9 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
 
     depth_image, _ = gt.left_cam_readers['/davis/left/depth_image_rect'](0)
     flow_shape = (nframes, depth_image.shape[0], depth_image.shape[1])
-    x_flow_list = np.zeros(flow_shape)
-    y_flow_list = np.zeros(flow_shape)
+    x_flow_tensor = np.zeros(flow_shape, dtype=np.float)
+    y_flow_tensor = np.zeros(flow_shape, dtype=np.float)
+    timestamps = np.zeros((nframes,), dtype=np.float)
 
     print "Computing depth"
     for frame_num in range(len(gt.left_cam_readers['/davis/left/depth_image_rect'])):
@@ -176,8 +181,11 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
         if P0 is not None:
             V, Omega, dt = flow.compute_velocity_from_msg(P0, P1)
             flow_x, flow_y = flow.compute_flow_single_frame(V, Omega, depth_image.img, dt)
-            x_flow_list[frame_num,:,:] = flow_x
-            y_flow_list[frame_num,:,:] = flow_y
+            x_flow_tensor[frame_num,:,:] = flow_x
+            y_flow_tensor[frame_num,:,:] = flow_y
+            timestamps[frame_num] = P1.header.stamp.to_sec()
+        else:
+            timestamps[frame_num] = P1.header.stamp.to_sec()
 
         depth_image.release()
         P0 = P1
@@ -189,7 +197,7 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
     if save_numpy:
         print "Saving numpy"
         numpy_name = base_name+"_gt_flow.npz"
-        np.savez(numpy_name, x_flow_list=x_flow_list, y_flow_list=y_flow_list)
+        np.savez(numpy_name, ts=timestamps, x_flow_tensor=x_flow_tensor, y_flow_tensor=y_flow_tensor)
 
     if save_movie:
         print "Saving movie"
@@ -197,14 +205,14 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
         plt.close('all')
    
         fig = plt.figure()
-        first_img = flow.colorize_image(x_flow_list[0], y_flow_list[0])
+        first_img = flow.colorize_image(x_flow_tensor[0], y_flow_tensor[0])
         im = plt.imshow(first_img, animated=True)
         
         def updatefig(frame_num, *args):
-            im.set_data(flow.colorize_image(x_flow_list[frame_num], y_flow_list[frame_num]))
+            im.set_data(flow.colorize_image(x_flow_tensor[frame_num], y_flow_tensor[frame_num]))
             return im,
 
-        ani = animation.FuncAnimation(fig, updatefig, frames=len(x_flow_list))
+        ani = animation.FuncAnimation(fig, updatefig, frames=len(x_flow_tensor))
         movie_path = base_name+"_gt_flow.mp4"
         ani.save(movie_path)
         plt.show()

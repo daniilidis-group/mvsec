@@ -53,14 +53,17 @@ class Flow:
     """
     def __init__(self, calibration):
         self.cal = calibration
-        self.fx = self.cal.intrinsic_extrinsic['cam0']['projection_matrix'][0][0]
-        self.px = self.cal.intrinsic_extrinsic['cam0']['projection_matrix'][0][2]
-        self.fy = self.cal.intrinsic_extrinsic['cam0']['projection_matrix'][1][1]
-        self.py = self.cal.intrinsic_extrinsic['cam0']['projection_matrix'][1][2]
+        self.Pfx = self.cal.intrinsic_extrinsic['cam0']['projection_matrix'][0][0]
+        self.Ppx = self.cal.intrinsic_extrinsic['cam0']['projection_matrix'][0][2]
+        self.Pfy = self.cal.intrinsic_extrinsic['cam0']['projection_matrix'][1][1]
+        self.Ppy = self.cal.intrinsic_extrinsic['cam0']['projection_matrix'][1][2]
+
+        self.Kfx = self.cal.intrinsic_extrinsic['cam0']['intrinsics'][0]
+        self.Kfy = self.cal.intrinsic_extrinsic['cam0']['intrinsics'][1]
 
         # number of pixels in the camera
-        x_map = (self.cal.left_map[:,:,0]-self.px)/self.fx
-        y_map = (self.cal.left_map[:,:,1]-self.py)/self.fy
+        x_map = (self.cal.left_map[:,:,0]-self.Ppx)/self.Pfx
+        y_map = (self.cal.left_map[:,:,1]-self.Ppy)/self.Pfy
         self.flat_x_map = x_map.ravel()
         self.flat_y_map = y_map.ravel()
 
@@ -105,8 +108,8 @@ class Flow:
         flat_y_flow_out[mask] = fdm * (fym*V[2]-V[1])
         flat_y_flow_out[mask] +=  np.squeeze(np.dot(omm[:,1,:], Omega))
 
-        x_flow_out = (x_flow_out*self.fx)*dt
-        y_flow_out = (y_flow_out*self.fx)*dt
+        x_flow_out = (x_flow_out*self.Kfx)*dt
+        y_flow_out = (y_flow_out*self.Kfx)*dt
 
         return x_flow_out, y_flow_out
     
@@ -194,7 +197,7 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
     flow = Flow(cal)
     P0 = None
 
-    nframes = len(gt.left_cam_readers['/davis/left/depth_image_rect'])
+    nframes = len(gt.left_cam_readers['/davis/left/depth_image_raw'])
     if stop_ind is not None:
         stop_ind = min(nframes, stop_ind)
     else:
@@ -208,7 +211,7 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
     nframes = stop_ind - start_ind
 
 
-    depth_image, _ = gt.left_cam_readers['/davis/left/depth_image_rect'](0)
+    depth_image, _ = gt.left_cam_readers['/davis/left/depth_image_raw'](0)
     flow_shape = (nframes, depth_image.shape[0], depth_image.shape[1])
     x_flow_tensor = np.zeros(flow_shape, dtype=np.float)
     y_flow_tensor = np.zeros(flow_shape, dtype=np.float)
@@ -249,7 +252,7 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
 
     print "Computing flow"
     for frame_num in range(nframes):
-        depth_image = gt.left_cam_readers['/davis/left/depth_image_rect'][frame_num+start_ind]
+        depth_image = gt.left_cam_readers['/davis/left/depth_image_raw'][frame_num+start_ind]
         depth_image.acquire()
 
         if frame_num-filter_size < 0:

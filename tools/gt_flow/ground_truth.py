@@ -8,7 +8,7 @@ class GroundTruth:
     def __init__(self, experiment_name, run_number):
         self.bag_path = downloader.get_ground_truth(experiment_name, run_number)[0]
 
-        left_sync_topics = (['/davis/left/odometry','/davis/left/depth_image_rect'],[0.05,0.05])
+        left_sync_topics = (['/davis/left/odometry','/davis/left/depth_image_raw'],[0.05,0.05])
 
         self.bag = bag_indexer.get_bag_indexer(self.bag_path, [left_sync_topics])
 
@@ -25,7 +25,7 @@ class GroundTruth:
         import matplotlib.pyplot as plt
         import matplotlib.animation as animation
         fig = plt.figure()
-        left_cam = self.left_cam_readers['/davis/left/depth_image_rect']
+        left_cam = self.left_cam_readers['/davis/left/depth_image_raw']
         
         first_view = left_cam[0]
         first_view.acquire()

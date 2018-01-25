@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Download - Multi Vehicle Stereo Event Camera Dataset</title>
+    <title>Change Log - Multi Vehicle Stereo Event Camera Dataset</title>
     <meta name="generator" content="Hugo 0.16-DEV" />
 
     
     <meta name="description" content="A data set for Stereo Event Cameras.">
     
-    <link rel="canonical" href="https://daniilidis-group.github.io/mvsec/download/">
+    <link rel="canonical" href="https://daniilidis-group.github.io/mvsec/change_log/">
     
     <meta name="author" content="Alex Zhu">
     
 
-    <meta property="og:url" content="https://daniilidis-group.github.io/mvsec/download/">
+    <meta property="og:url" content="https://daniilidis-group.github.io/mvsec/change_log/">
     <meta property="og:title" content="Multi Vehicle Stereo Event Camera Dataset">
     <meta property="og:image" content="https://daniilidis-group.github.io/mvsec/upenn_favicon.jpg">
     <meta name="apple-mobile-web-app-title" content="Multi Vehicle Stereo Event Camera Dataset">
@@ -131,7 +131,7 @@ $
     <div class="headtitle">
     <div class="stretch">
       <div class="title">
-        Download
+        Change Log
       </div>
     </div>
     </div>
@@ -266,14 +266,11 @@ $
 
 
 
-<a class="current" title="Download" href="https://daniilidis-group.github.io/mvsec/download/">
+<a  title="Download" href="https://daniilidis-group.github.io/mvsec/download/">
 	
 	Download
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
   
 </li>
@@ -286,11 +283,14 @@ $
 
 
 
-<a  title="Change Log" href="https://daniilidis-group.github.io/mvsec/change_log/">
+<a class="current" title="Change Log" href="https://daniilidis-group.github.io/mvsec/change_log/">
 	
 	Change Log
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
   
 </li>
@@ -324,148 +324,21 @@ $
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Download </h1>
+			<h1>Change Log </h1>
 
-			
+			<p>Dec 10 2017 - Added motorcycle data.</p>
 
-<h2 id="ros-bags">ROS Bags</h2>
+<p>Dec 17 2017 - Fixed VI-Sensor images. Both the left and right images had been mapped to /visensor/left/ before.</p>
 
-<p>To process the bag files, you will need the <a href="https://github.com/uzh-rpg/rpg_dvs_ros">rpg_dvs_ros</a> package to read the events (in particular dvs_msgs). You may also optionally install the <a href="https://github.com/ethz-asl/visensor_node">visensor_node</a> to have access to the /cust_imu0 topic, which includes the magnetometer, pressure and temperature outputs of the VI-Sensor.</p>
+<p>Dec 19 2017 - Fixed incorrect description in camera calibrations. T_cn_cm1 is the transform taking a point from the previous camera to the current camera, not the other way around.</p>
 
-<p>Sequences will be added to this page on a rolling basis. We also plan to include videos for each sequence.</p>
+<p>Jan 13 2018 - Fixed direction of VI-Sensor axes in sensor rig image. They were rotated 90 degrees incorrectly before.</p>
 
-<p>Note that these bags are large (up to 27G).</p>
+<p>Jan 19 2018 - Fixed incorrect DAVIS left camera to IMU transform in the indoor flying sequence calibration.</p>
 
-<div style='float:left;margin-left:5%'>
-<table>
-<col width="30%">
-<col width="10%">
-<col width="50%">
-<tr><td>Scene</td><td>Calibration</td><td>Sequence</td><td>Map/Image</td></tr>
-<tr>
-<td>Indoor flying (Note: No VI-Sensor data is available for this scene).</td>
-<td>
-<a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying_calib.zip">Calibration</a>
-</td>
-<td>
-Indoor Flying 1 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying1_data.bag">Data (1.2G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying1_gt.bag">Ground truth (2.6G)</a>
-</td>
-</tr>
-<tr>
-<td>
-</td>
-<td>
-</td>
-<td>
-Indoor Flying 2 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying2_data.bag">Data (1.7G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying2_gt.bag">Ground truth (3.2G)</a>
-</td>
-</tr>
-<tr>
-<td>
-</td>
-<td>
-</td>
-<td>
-Indoor Flying 3 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying3_data.bag">Data (1.8G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying3_gt.bag">Ground truth (3.5G)</a>
-</td>
-</tr>
-<tr>
-<td>
-</td>
-<td>
-</td>
-<td>
-Indoor Flying 4 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying4_data.bag">Data (419M)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying4_gt.bag">Ground truth (738M)</a>
-</td>
-</tr>
-<tr>
-<td>Outdoor Driving Day (Note: A hardware failure caused the grayscale images on the right DAVIS grayscale images for this scene to be corrupted. However, VI-Sensor grayscale images are available).</td>
-<td>
-<a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day_calib.zip">Calibration</a>
-</td>
-<td>
-West Philadelphia Day 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day1_data.bag">Data (9.7G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day1_gt.bag">Ground truth (9.5G)</a>
-</td>
-<td>
-<a target="_blank" href="../figs/gt_maps/west_philly_day1_traj.jpg">
-<img src="../figs/gt_maps/west_philly_day1_traj.jpg" alt="west_philly_day1" style="max-height:150px"/>
-</a>
-</td>
+<p>Jan 23 2018 - Removed erroneous extra text from begining of outdoor_night camchain.</p>
 
-</tr>
-<tr>
-<td>
-</td>
-<td>
-</td>
-<td>
-West Philadelphia Day 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day2_data.bag">Data (27G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day2_gt.bag">Ground truth (23G)</a>
-</td>
-<td>
-<a target="_blank" href="../figs/gt_maps/west_philly_day2_traj.jpg">
-<img src="../figs/gt_maps/west_philly_day2_traj.jpg" alt="west_philly_day2" style="max-height:150px"/>
-</a>
-</td>
-</tr>
-<tr>
-<td>Outdoor Driving Night</td>
-<td>
-<a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night_calib.zip">Calibration</a>
-</td>
-<td>
-West Philadelphia Night 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night1_data.bag">Data (8.1G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night1_gt.bag">Ground truth (9.5G)</a>
-</td>
-<td>
-<a target="_blank" href="../figs/gt_maps/west_philly_night1_traj.jpg">
-<img src="../figs/gt_maps/west_philly_night1_traj.jpg" alt="west_philly_night1" style="max-height:150px"/>
-</a>
-</td>
-</tr>
-<tr>
-<td>
-</td>
-<td>
-</td>
-<td>
-West Philadelphia Night 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night2_data.bag">Data (11G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night2_gt.bag">Ground truth (11G)</a>
-</td>
-<td>
-<a target="_blank" href="../figs/gt_maps/west_philly_night2_traj.jpg">
-<img src="../figs/gt_maps/west_philly_night2_traj.jpg" alt="west_philly_night2" style="max-height:150px"/>
-</a>
-</td>
-</tr>
-<tr>
-<td>
-</td>
-<td>
-</td>
-<td>
-West Philadelphia Night 3 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night3_data.bag">Data (9G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night3_gt.bag">Ground truth (11G)</a>
-</td>
-<td>
-<a target="_blank" href="../figs/gt_maps/west_philly_night3_traj.jpg">
-<img src="../figs/gt_maps/west_philly_night3_traj.jpg" alt="west_philly_night3" style="max-height:150px"/>
-</a>
-</td>
-</tr>
-<tr>
-<td>Motorcycle (Note: No lidar).</td>
-<td>
-<a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_calib.zip">Calibration</a>
-</td>
-<td>
-Highway 1 <a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_data.bag">Data (42G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_gt.bag">Ground truth (659K)</a>
-</td>
-</tr>
-</table>
-</div>
-
-<p><BR CLEAR="all"></p>
-
-<h2 id="text-files">Text Files</h2>
-
-<p>Coming soon!</p>
+<p>Jan 24 2018 - Renamed bags in outdoor_day and outdoor_night to follow the convention of outdoor_day/outdoor_day1_gt.bag instead of outdoor_day/west_philly_day_1_gt.bag, etc.</p>
 
 
 			<footer class="footer">
@@ -474,7 +347,7 @@ Highway 1 <a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_d
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://daniilidis-group.github.io/mvsec/sample_code/" title="Sample Code">
+      <a href="https://daniilidis-group.github.io/mvsec/download/" title="Download">
         <span class="direction">
           Previous
         </span>
@@ -484,7 +357,7 @@ Highway 1 <a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_d
           </div>
           <div class="stretch">
             <div class="title">
-              Sample Code
+              Download
             </div>
           </div>
         </div>
@@ -493,22 +366,6 @@ Highway 1 <a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_d
   </div>
 
   <div class="next">
-  
-      <a href="https://daniilidis-group.github.io/mvsec/change_log/" title="Change Log">
-        <span class="direction">
-          Next
-        </span>
-        <div class="page">
-          <div class="stretch">
-            <div class="title">
-              Change Log
-            </div>
-          </div>
-          <div class="button button-next" role="button" aria-label="Next">
-            <i class="icon icon-forward"></i>
-          </div>
-        </div>
-      </a>
   
   </div>
 </nav>

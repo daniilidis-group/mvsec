@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Change_logs on Multi Vehicle Stereo Event Camera Dataset</title>
+    <link>https://daniilidis-group.github.io/mvsec/change_log/</link>
+    <description>Recent content in Change_logs on Multi Vehicle Stereo Event Camera Dataset</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Aug 2017 21:07:13 +0100</lastBuildDate>
+    <atom:link href="https://daniilidis-group.github.io/mvsec/change_log/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Change Log</title>
+      <link>https://daniilidis-group.github.io/mvsec/change_log/</link>
+      <pubDate>Tue, 08 Aug 2017 21:07:13 +0100</pubDate>
+      
+      <guid>https://daniilidis-group.github.io/mvsec/change_log/</guid>
+      <description>&lt;p&gt;Dec 10 2017 - Added motorcycle data.&lt;/p&gt;
+
+&lt;p&gt;Dec 17 2017 - Fixed VI-Sensor images. Both the left and right images had been mapped to /visensor/left/ before.&lt;/p&gt;
+
+&lt;p&gt;Dec 19 2017 - Fixed incorrect description in camera calibrations. T_cn_cm1 is the transform taking a point from the previous camera to the current camera, not the other way around.&lt;/p&gt;
+
+&lt;p&gt;Jan 13 2018 - Fixed direction of VI-Sensor axes in sensor rig image. They were rotated 90 degrees incorrectly before.&lt;/p&gt;
+
+&lt;p&gt;Jan 19 2018 - Fixed incorrect DAVIS left camera to IMU transform in the indoor flying sequence calibration.&lt;/p&gt;
+
+&lt;p&gt;Jan 23 2018 - Removed erroneous extra text from begining of outdoor_night camchain.&lt;/p&gt;
+
+&lt;p&gt;Jan 24 2018 - Renamed bags in outdoor_day and outdoor_night to follow the convention of outdoor_day/outdoor_day1_gt.bag instead of outdoor_day/west_philly_day_1_gt.bag, etc.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -58,8 +58,12 @@ class Flow:
         self.Pfy = self.cal.intrinsic_extrinsic['cam0']['projection_matrix'][1][1]
         self.Ppy = self.cal.intrinsic_extrinsic['cam0']['projection_matrix'][1][2]
 
-        self.Kfx = self.cal.intrinsic_extrinsic['cam0']['intrinsics'][0]
-        self.Kfy = self.cal.intrinsic_extrinsic['cam0']['intrinsics'][1]
+        intrinsics = self.cal.intrinsic_extrinsic['cam0']['intrinsics']
+        self.K = np.array([[intrinsics[0], 0., intrinsics[2]],
+                           [0., intrinsics[1], intrinsics[3]],
+                           [0., 0., 1.]])
+
+        self.distortion_coeffs = np.array(self.cal.intrinsic_extrinsic['cam0']['distortion_coeffs'])
 
         # number of pixels in the camera
         x_map = (self.cal.left_map[:,:,0]-self.Ppx)/self.Pfx
@@ -108,10 +112,31 @@ class Flow:
         flat_y_flow_out[mask] = fdm * (fym*V[2]-V[1])
         flat_y_flow_out[mask] +=  np.squeeze(np.dot(omm[:,1,:], Omega))
 
-        x_flow_out = (x_flow_out*self.Kfx)*dt
-        y_flow_out = (y_flow_out*self.Kfx)*dt
+        flat_x_flow_out *= dt
+        flat_y_flow_out *= dt
+        
+        flat_x_shifted = self.flat_x_map[mask] + flat_x_flow_out[mask]
+        flat_y_shifted = self.flat_y_map[mask] + flat_y_flow_out[mask]
+        
+        points_shifted = np.stack((flat_x_shifted[:, None], flat_y_shifted[:, None]), axis=2)
 
-        return x_flow_out, y_flow_out
+        distorted_x, distorted_y = np.meshgrid(np.arange(0, depth_image.shape[1]),
+                                               np.arange(0, depth_image.shape[0]))
+        flat_distorted_x = distorted_x.reshape((-1))
+        flat_distorted_y = distorted_y.reshape((-1))
+        
+        import cv2
+        distorted_points_shifted = cv2.fisheye.distortPoints(points_shifted, self.K, self.distortion_coeffs)
+        
+        distorted_x_flow_out = np.zeros((depth_image.shape[0], depth_image.shape[1]))
+        flat_distorted_x_flow_out = distorted_x_flow_out.reshape((-1))
+        flat_distorted_x_flow_out[mask] = np.squeeze(distorted_points_shifted[:, :, 0]) - flat_distorted_x[mask]
+
+        distorted_y_flow_out = np.zeros((depth_image.shape[0], depth_image.shape[1]))
+        flat_distorted_y_flow_out = distorted_y_flow_out.reshape((-1))
+        flat_distorted_y_flow_out[mask] = np.squeeze(distorted_points_shifted[:, :, 1]) - flat_distorted_y[mask]
+        
+        return distorted_x_flow_out, distorted_y_flow_out
     
     def rot_mat_from_quaternion(self, q):
         R = np.array([[1-2*q.y**2-2*q.z**2, 2*q.x*q.y+2*q.w*q.z, 2*q.x*q.z-2*q.w*q.y],
@@ -130,23 +155,24 @@ class Flow:
         p0, q0, t0 = self.p_q_t_from_msg(P0)
         p1, q1, t1 = self.p_q_t_from_msg(P1)
 
-        # Not sure why we need to transpose
-        R0 = self.rot_mat_from_quaternion(q0).T
-        R1 = self.rot_mat_from_quaternion(q1).T
+        # There's something wrong with the current function to go from quat to matrix.
+        # Using the TF version instead.
+        q0_ros = [q0.x, q0.y, q0.z, q0.w]
+        q1_ros = [q1.x, q1.y, q1.z, q1.w]
+        
+        import tf
+        H0 = tf.transformations.quaternion_matrix(q0_ros)
+        H0[:3, 3] = p0
 
+        H1 = tf.transformations.quaternion_matrix(q1_ros)
+        H1[:3, 3] = p1
+
+        # Let the homogeneous matrix handle the inversion etc. Guaranteed correctness.
+        H01 = np.dot(np.linalg.inv(H0), H1)
         dt = t1 - t0
 
-        # compute H0^-1
-        H0_inv_p = np.dot(R0,-p0)
-        H0_inv_R = R0.T
-
-        # set H1 to H0^-1 * H1
-        H1_p = np.dot(H0_inv_R, p1-p0)
-        H1_R = np.dot(H0_inv_R, R1)
-
-        V = H1_p/dt
-
-        w_hat = logm(np.dot(R0.T, R1)) / dt
+        V = H01[:3, 3] / dt
+        w_hat = logm(H01[:3, :3]) / dt
         Omega = np.array([w_hat[2,1], w_hat[0,2], w_hat[1,0]])
 
         return V, Omega, dt
@@ -232,7 +258,6 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
 
         if P0 is not None:
             V, Omega, dt = flow.compute_velocity_from_msg(P0, P1)
-
             Vs[frame_num, :] = V
             Omegas[frame_num, :] = Omega
             dTs[frame_num] = dt

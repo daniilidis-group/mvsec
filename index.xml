@@ -488,19 +488,26 @@ Highway 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/motorcycle/motor
       <pubDate>Tue, 08 Aug 2017 21:07:13 +0100</pubDate>
       
       <guid>https://daniilidis-group.github.io/mvsec/change_log/</guid>
-      <description>&lt;p&gt;Dec 10 2017 - Added motorcycle data.&lt;/p&gt;
+      <description>&lt;p&gt;2018/01/24&lt;br /&gt;
+Renamed bags in outdoor_day and outdoor_night to follow the convention of outdoor_day/outdoor_day1_gt.bag instead of outdoor_day/west_philly_day_1_gt.bag, etc.&lt;/p&gt;
 
-&lt;p&gt;Dec 17 2017 - Fixed VI-Sensor images. Both the left and right images had been mapped to /visensor/left/ before.&lt;/p&gt;
+&lt;p&gt;2018/01/23&lt;br /&gt;
+Removed erroneous extra text from begining of outdoor_night camchain.&lt;/p&gt;
 
-&lt;p&gt;Dec 19 2017 - Fixed incorrect description in camera calibrations. T_cn_cm1 is the transform taking a point from the previous camera to the current camera, not the other way around.&lt;/p&gt;
+&lt;p&gt;2018/01/19&lt;br /&gt;
+Fixed incorrect DAVIS left camera to IMU transform in the indoor flying sequence calibration.&lt;/p&gt;
 
-&lt;p&gt;Jan 13 2018 - Fixed direction of VI-Sensor axes in sensor rig image. They were rotated 90 degrees incorrectly before.&lt;/p&gt;
+&lt;p&gt;2018/01/13&lt;br /&gt;
+Fixed direction of VI-Sensor axes in sensor rig image. They were rotated 90 degrees incorrectly before.&lt;/p&gt;
 
-&lt;p&gt;Jan 19 2018 - Fixed incorrect DAVIS left camera to IMU transform in the indoor flying sequence calibration.&lt;/p&gt;
+&lt;p&gt;2017/12/19&lt;br /&gt;
+Fixed incorrect description in camera calibrations. T_cn_cm1 is the transform taking a point from the previous camera to the current camera, not the other way around.&lt;/p&gt;
 
-&lt;p&gt;Jan 23 2018 - Removed erroneous extra text from begining of outdoor_night camchain.&lt;/p&gt;
+&lt;p&gt;2017/12/17&lt;br /&gt;
+Fixed VI-Sensor images. Both the left and right images had been mapped to /visensor/left/ before.&lt;/p&gt;
 
-&lt;p&gt;Jan 24 2018 - Renamed bags in outdoor_day and outdoor_night to follow the convention of outdoor_day/outdoor_day1_gt.bag instead of outdoor_day/west_philly_day_1_gt.bag, etc.&lt;/p&gt;
+&lt;p&gt;2017/12/10&lt;br /&gt;
+Added motorcycle data.&lt;/p&gt;
 </description>
     </item>
     

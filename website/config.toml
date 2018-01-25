@@ -59,6 +59,10 @@ canonifyurls = true
 	name   = "Download"
 	url    = "download/"
 	weight = 25
+[[menu.main]]
+	name   = "Change Log"
+	url    = "change_log/"
+	weight = 30
 
 [blackfriday]
 	smartypants	= true

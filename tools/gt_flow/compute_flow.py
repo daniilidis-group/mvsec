@@ -64,12 +64,28 @@ class Flow:
                            [0., 0., 1.]])
 
         self.distortion_coeffs = np.array(self.cal.intrinsic_extrinsic['cam0']['distortion_coeffs'])
+        resolution = self.cal.intrinsic_extrinsic['cam0']['resolution']
 
         # number of pixels in the camera
-        x_map = (self.cal.left_map[:,:,0]-self.Ppx)/self.Pfx
-        y_map = (self.cal.left_map[:,:,1]-self.Ppy)/self.Pfy
-        self.flat_x_map = x_map.ravel()
-        self.flat_y_map = y_map.ravel()
+        #self.x_map = (self.cal.left_map[:,:,0]-self.Ppx)/self.Pfx
+        #self.y_map = (self.cal.left_map[:,:,1]-self.Ppy)/self.Pfy
+        #self.flat_x_map = self.x_map.ravel()
+        #self.flat_y_map = self.y_map.ravel()
+
+        # left_map takes into account the rectification matrix, which rotates the image.
+        # For optical flow in the distorted image, this rotation needs to be removed.
+        # In the end it's easier just to recompute the map.
+        x_inds, y_inds = np.meshgrid(np.arange(resolution[0]),
+                                     np.arange(resolution[1]))
+        x_inds = x_inds.astype(np.float32)
+        y_inds = y_inds.astype(np.float32)
+        flat_x_inds = x_inds.reshape((-1))
+        flat_y_inds = y_inds.reshape((-1))     
+        points = np.stack((flat_x_inds[:, np.newaxis], flat_y_inds[:, np.newaxis]), axis=2)
+        import cv2
+        undistorted_points = cv2.fisheye.undistortPoints(points, self.K, self.distortion_coeffs)
+        self.flat_x_map = np.squeeze(undistorted_points[:, :, 0])
+        self.flat_y_map = np.squeeze(undistorted_points[:, :, 1])
 
         N = self.flat_x_map.shape[0]
 
@@ -114,28 +130,46 @@ class Flow:
 
         flat_x_flow_out *= dt
         flat_y_flow_out *= dt
-        
-        flat_x_shifted = self.flat_x_map[mask] + flat_x_flow_out[mask]
-        flat_y_shifted = self.flat_y_map[mask] + flat_y_flow_out[mask]
-        
-        points_shifted = np.stack((flat_x_shifted[:, None], flat_y_shifted[:, None]), axis=2)
 
-        distorted_x, distorted_y = np.meshgrid(np.arange(0, depth_image.shape[1]),
-                                               np.arange(0, depth_image.shape[0]))
+        x_inds, y_inds = np.meshgrid(np.arange(depth_image.shape[1]),
+                                     np.arange(depth_image.shape[0]))
+        
+        flat_x_shifted = self.flat_x_map + flat_x_flow_out
+        flat_y_shifted = self.flat_y_map + flat_y_flow_out
+
+        points_shifted = np.stack((flat_x_shifted[np.newaxis, :], flat_y_shifted[np.newaxis, :]),
+                                  axis=2)
+
+        import cv2
+        distorted_points_shifted = cv2.fisheye.distortPoints(points_shifted, 
+                                                               self.K, 
+                                                               self.distortion_coeffs)
+        
+        distorted_x, distorted_y = np.meshgrid(np.arange(depth_image.shape[1]),
+                                               np.arange(depth_image.shape[0]))
+
         flat_distorted_x = distorted_x.reshape((-1))
         flat_distorted_y = distorted_y.reshape((-1))
-        
-        import cv2
-        distorted_points_shifted = cv2.fisheye.distortPoints(points_shifted, self.K, self.distortion_coeffs)
-        
+
+        new_x_pts = np.squeeze(distorted_points_shifted[:, :, 0])
+        new_y_pts = np.squeeze(distorted_points_shifted[:, :, 1])
+
         distorted_x_flow_out = np.zeros((depth_image.shape[0], depth_image.shape[1]))
         flat_distorted_x_flow_out = distorted_x_flow_out.reshape((-1))
-        flat_distorted_x_flow_out[mask] = np.squeeze(distorted_points_shifted[:, :, 0]) - flat_distorted_x[mask]
+        flat_distorted_x_flow_out[mask] = new_x_pts[mask] - flat_distorted_x[mask]
 
         distorted_y_flow_out = np.zeros((depth_image.shape[0], depth_image.shape[1]))
         flat_distorted_y_flow_out = distorted_y_flow_out.reshape((-1))
-        flat_distorted_y_flow_out[mask] = np.squeeze(distorted_points_shifted[:, :, 1]) - flat_distorted_y[mask]
-        
+        flat_distorted_y_flow_out[mask] = new_y_pts[mask] - flat_distorted_y[mask]
+        """
+        plt.quiver(flat_distorted_x[::100],
+                   flat_distorted_y[::100],
+                   flat_distorted_x_flow_out[::100],
+                   flat_distorted_y_flow_out[::100])
+
+        plt.show()
+        """
+
         return distorted_x_flow_out, distorted_y_flow_out
     
     def rot_mat_from_quaternion(self, q):
@@ -275,6 +309,9 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
 
     filter_size = 10
 
+    smoothed_Vs = Vs
+    smoothed_Omegas = Omegas
+
     print "Computing flow"
     for frame_num in range(nframes):
         depth_image = gt.left_cam_readers['/davis/left/depth_image_raw'][frame_num+start_ind]
@@ -291,6 +328,9 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
             Omega = np.mean(Omegas[frame_num-filter_size:frame_num+filter_size+1,:], axis=0)
         dt = dTs[frame_num]
 
+        smoothed_Vs[frame_num, :] = V
+        smoothed_Omegas[frame_num, :] = Omega
+
         flow_x, flow_y = flow.compute_flow_single_frame(V, Omega, depth_image.img, dt)
         x_flow_tensor[frame_num,:,:] = flow_x
         y_flow_tensor[frame_num,:,:] = flow_y
@@ -305,7 +345,7 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
         print "Saving numpy"
         numpy_name = base_name+"_gt_flow.npz"
         np.savez(numpy_name, ts=timestamps, x_flow_tensor=x_flow_tensor, y_flow_tensor=y_flow_tensor,
-                             Vs=Vs, Omegas=Omegas, ps=ps, qs=qs)
+                             Vs=smoothed_Vs, Omegas=smoothed_Omegas, ps=ps, qs=qs)
 
     if save_movie:
         print "Saving movie"

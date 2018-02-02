@@ -73,7 +73,7 @@ Indoor Flying 4 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/indoor_fly
 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day_calib.zip&#34;&gt;Calibration&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
-West Philadelphia Day 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day1_data.bag&#34;&gt;Data (9.7G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day1_gt.bag&#34;&gt;Ground truth (9.5G)&lt;/a&gt;
+Outdoor Day 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day1_data.bag&#34;&gt;Data (9.7G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day1_gt.bag&#34;&gt;Ground truth (9.5G)&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
 &lt;a target=&#34;_blank&#34; href=&#34;../figs/gt_maps/west_philly_day1_traj.jpg&#34;&gt;
@@ -88,7 +88,7 @@ West Philadelphia Day 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/ou
 &lt;td&gt;
 &lt;/td&gt;
 &lt;td&gt;
-West Philadelphia Day 2 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day2_data.bag&#34;&gt;Data (27G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day2_gt.bag&#34;&gt;Ground truth (23G)&lt;/a&gt;
+Outdoor Day 2 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day2_data.bag&#34;&gt;Data (27G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day2_gt.bag&#34;&gt;Ground truth (23G)&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
 &lt;a target=&#34;_blank&#34; href=&#34;../figs/gt_maps/west_philly_day2_traj.jpg&#34;&gt;
@@ -102,7 +102,7 @@ West Philadelphia Day 2 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/ou
 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night_calib.zip&#34;&gt;Calibration&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
-West Philadelphia Night 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night1_data.bag&#34;&gt;Data (8.1G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night1_gt.bag&#34;&gt;Ground truth (9.5G)&lt;/a&gt;
+Outdoor Night 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night1_data.bag&#34;&gt;Data (8.1G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night1_gt.bag&#34;&gt;Ground truth (9.5G)&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
 &lt;a target=&#34;_blank&#34; href=&#34;../figs/gt_maps/west_philly_night1_traj.jpg&#34;&gt;
@@ -116,7 +116,7 @@ West Philadelphia Night 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/
 &lt;td&gt;
 &lt;/td&gt;
 &lt;td&gt;
-West Philadelphia Night 2 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night2_data.bag&#34;&gt;Data (11G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night2_gt.bag&#34;&gt;Ground truth (11G)&lt;/a&gt;
+Outdoor Night 2 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night2_data.bag&#34;&gt;Data (11G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night2_gt.bag&#34;&gt;Ground truth (11G)&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
 &lt;a target=&#34;_blank&#34; href=&#34;../figs/gt_maps/west_philly_night2_traj.jpg&#34;&gt;
@@ -130,7 +130,7 @@ West Philadelphia Night 2 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/
 &lt;td&gt;
 &lt;/td&gt;
 &lt;td&gt;
-West Philadelphia Night 3 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night3_data.bag&#34;&gt;Data (9G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night3_gt.bag&#34;&gt;Ground truth (11G)&lt;/a&gt;
+Outdoor Night 3 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night3_data.bag&#34;&gt;Data (9G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night3_gt.bag&#34;&gt;Ground truth (11G)&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
 &lt;a target=&#34;_blank&#34; href=&#34;../figs/gt_maps/west_philly_night3_traj.jpg&#34;&gt;

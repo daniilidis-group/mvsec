@@ -397,11 +397,11 @@ Indoor Flying 4 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/indoor_fly
 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day_calib.zip&#34;&gt;Calibration&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
-West Philadelphia Day 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day1_data.bag&#34;&gt;Data (9.7G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day1_gt.bag&#34;&gt;Ground truth (9.5G)&lt;/a&gt;
+West Philadelphia Day 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day1_data.bag&#34;&gt;Data (9.7G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day1_gt.bag&#34;&gt;Ground truth (9.5G)&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
 &lt;a target=&#34;_blank&#34; href=&#34;../figs/gt_maps/west_philly_day1_traj.jpg&#34;&gt;
-&lt;img src=&#34;../figs/gt_maps/west_philly_day1_traj.jpg&#34; alt=&#34;west_philly_day1&#34; style=&#34;max-height:150px&#34;/&gt;
+&lt;img src=&#34;../figs/gt_maps/west_philly_day1_traj.jpg&#34; alt=&#34;outdoor_day1&#34; style=&#34;max-height:150px&#34;/&gt;
 &lt;/a&gt;
 &lt;/td&gt;
 
@@ -412,11 +412,11 @@ West Philadelphia Day 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/ou
 &lt;td&gt;
 &lt;/td&gt;
 &lt;td&gt;
-West Philadelphia Day 2 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day2_data.bag&#34;&gt;Data (27G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day2_gt.bag&#34;&gt;Ground truth (23G)&lt;/a&gt;
+West Philadelphia Day 2 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day2_data.bag&#34;&gt;Data (27G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day2_gt.bag&#34;&gt;Ground truth (23G)&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
 &lt;a target=&#34;_blank&#34; href=&#34;../figs/gt_maps/west_philly_day2_traj.jpg&#34;&gt;
-&lt;img src=&#34;../figs/gt_maps/west_philly_day2_traj.jpg&#34; alt=&#34;west_philly_day2&#34; style=&#34;max-height:150px&#34;/&gt;
+&lt;img src=&#34;../figs/gt_maps/west_philly_day2_traj.jpg&#34; alt=&#34;outdoor_day2&#34; style=&#34;max-height:150px&#34;/&gt;
 &lt;/a&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
@@ -426,11 +426,11 @@ West Philadelphia Day 2 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/ou
 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night_calib.zip&#34;&gt;Calibration&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
-West Philadelphia Night 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night1_data.bag&#34;&gt;Data (8.1G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night1_gt.bag&#34;&gt;Ground truth (9.5G)&lt;/a&gt;
+West Philadelphia Night 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night1_data.bag&#34;&gt;Data (8.1G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night1_gt.bag&#34;&gt;Ground truth (9.5G)&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
 &lt;a target=&#34;_blank&#34; href=&#34;../figs/gt_maps/west_philly_night1_traj.jpg&#34;&gt;
-&lt;img src=&#34;../figs/gt_maps/west_philly_night1_traj.jpg&#34; alt=&#34;west_philly_night1&#34; style=&#34;max-height:150px&#34;/&gt;
+&lt;img src=&#34;../figs/gt_maps/west_philly_night1_traj.jpg&#34; alt=&#34;outdoor_night1&#34; style=&#34;max-height:150px&#34;/&gt;
 &lt;/a&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
@@ -440,11 +440,11 @@ West Philadelphia Night 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/
 &lt;td&gt;
 &lt;/td&gt;
 &lt;td&gt;
-West Philadelphia Night 2 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night2_data.bag&#34;&gt;Data (11G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night2_gt.bag&#34;&gt;Ground truth (11G)&lt;/a&gt;
+West Philadelphia Night 2 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night2_data.bag&#34;&gt;Data (11G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night2_gt.bag&#34;&gt;Ground truth (11G)&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
 &lt;a target=&#34;_blank&#34; href=&#34;../figs/gt_maps/west_philly_night2_traj.jpg&#34;&gt;
-&lt;img src=&#34;../figs/gt_maps/west_philly_night2_traj.jpg&#34; alt=&#34;west_philly_night2&#34; style=&#34;max-height:150px&#34;/&gt;
+&lt;img src=&#34;../figs/gt_maps/west_philly_night2_traj.jpg&#34; alt=&#34;outdoor_night2&#34; style=&#34;max-height:150px&#34;/&gt;
 &lt;/a&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
@@ -454,11 +454,11 @@ West Philadelphia Night 2 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/
 &lt;td&gt;
 &lt;/td&gt;
 &lt;td&gt;
-West Philadelphia Night 3 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night3_data.bag&#34;&gt;Data (9G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night3_gt.bag&#34;&gt;Ground truth (11G)&lt;/a&gt;
+West Philadelphia Night 3 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night3_data.bag&#34;&gt;Data (9G)&lt;/a&gt; &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night3_gt.bag&#34;&gt;Ground truth (11G)&lt;/a&gt;
 &lt;/td&gt;
 &lt;td&gt;
 &lt;a target=&#34;_blank&#34; href=&#34;../figs/gt_maps/west_philly_night3_traj.jpg&#34;&gt;
-&lt;img src=&#34;../figs/gt_maps/west_philly_night3_traj.jpg&#34; alt=&#34;west_philly_night3&#34; style=&#34;max-height:150px&#34;/&gt;
+&lt;img src=&#34;../figs/gt_maps/west_philly_night3_traj.jpg&#34; alt=&#34;outdoor_night3&#34; style=&#34;max-height:150px&#34;/&gt;
 &lt;/a&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
@@ -488,7 +488,10 @@ Highway 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/motorcycle/motor
       <pubDate>Tue, 08 Aug 2017 21:07:13 +0100</pubDate>
       
       <guid>https://daniilidis-group.github.io/mvsec/change_log/</guid>
-      <description>&lt;p&gt;2018/01/24&lt;br /&gt;
+      <description>&lt;p&gt;2018/02/01
+Updated links in download page to reflect the previous name change to the outdoor bags.&lt;/p&gt;
+
+&lt;p&gt;2018/01/24&lt;br /&gt;
 Renamed bags in outdoor_day and outdoor_night to follow the convention of outdoor_day/outdoor_day1_gt.bag instead of outdoor_day/west_philly_day_1_gt.bag, etc.&lt;/p&gt;
 
 &lt;p&gt;2018/01/23&lt;br /&gt;

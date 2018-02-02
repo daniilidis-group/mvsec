@@ -60,11 +60,11 @@ Indoor Flying 4 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/ind
 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day_calib.zip">Calibration</a>
 </td>
 <td>
-West Philadelphia Day 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day1_data.bag">Data (9.7G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day1_gt.bag">Ground truth (9.5G)</a>
+West Philadelphia Day 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day1_data.bag">Data (9.7G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day1_gt.bag">Ground truth (9.5G)</a>
 </td>
 <td>
 <a target="_blank" href="../figs/gt_maps/west_philly_day1_traj.jpg">
-<img src="../figs/gt_maps/west_philly_day1_traj.jpg" alt="west_philly_day1" style="max-height:150px"/>
+<img src="../figs/gt_maps/west_philly_day1_traj.jpg" alt="outdoor_day1" style="max-height:150px"/>
 </a>
 </td>
 
@@ -75,11 +75,11 @@ West Philadelphia Day 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_d
 <td>
 </td>
 <td>
-West Philadelphia Day 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day2_data.bag">Data (27G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/west_philly_day2_gt.bag">Ground truth (23G)</a>
+West Philadelphia Day 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day2_data.bag">Data (27G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day2_gt.bag">Ground truth (23G)</a>
 </td>
 <td>
 <a target="_blank" href="../figs/gt_maps/west_philly_day2_traj.jpg">
-<img src="../figs/gt_maps/west_philly_day2_traj.jpg" alt="west_philly_day2" style="max-height:150px"/>
+<img src="../figs/gt_maps/west_philly_day2_traj.jpg" alt="outdoor_day2" style="max-height:150px"/>
 </a>
 </td>
 </tr>
@@ -89,11 +89,11 @@ West Philadelphia Day 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_d
 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night_calib.zip">Calibration</a>
 </td>
 <td>
-West Philadelphia Night 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night1_data.bag">Data (8.1G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night1_gt.bag">Ground truth (9.5G)</a>
+West Philadelphia Night 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night1_data.bag">Data (8.1G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night1_gt.bag">Ground truth (9.5G)</a>
 </td>
 <td>
 <a target="_blank" href="../figs/gt_maps/west_philly_night1_traj.jpg">
-<img src="../figs/gt_maps/west_philly_night1_traj.jpg" alt="west_philly_night1" style="max-height:150px"/>
+<img src="../figs/gt_maps/west_philly_night1_traj.jpg" alt="outdoor_night1" style="max-height:150px"/>
 </a>
 </td>
 </tr>
@@ -103,11 +103,11 @@ West Philadelphia Night 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor
 <td>
 </td>
 <td>
-West Philadelphia Night 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night2_data.bag">Data (11G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night2_gt.bag">Ground truth (11G)</a>
+West Philadelphia Night 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night2_data.bag">Data (11G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night2_gt.bag">Ground truth (11G)</a>
 </td>
 <td>
 <a target="_blank" href="../figs/gt_maps/west_philly_night2_traj.jpg">
-<img src="../figs/gt_maps/west_philly_night2_traj.jpg" alt="west_philly_night2" style="max-height:150px"/>
+<img src="../figs/gt_maps/west_philly_night2_traj.jpg" alt="outdoor_night2" style="max-height:150px"/>
 </a>
 </td>
 </tr>
@@ -117,11 +117,11 @@ West Philadelphia Night 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor
 <td>
 </td>
 <td>
-West Philadelphia Night 3 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night3_data.bag">Data (9G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/west_philly_night3_gt.bag">Ground truth (11G)</a>
+West Philadelphia Night 3 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night3_data.bag">Data (9G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night3_gt.bag">Ground truth (11G)</a>
 </td>
 <td>
 <a target="_blank" href="../figs/gt_maps/west_philly_night3_traj.jpg">
-<img src="../figs/gt_maps/west_philly_night3_traj.jpg" alt="west_philly_night3" style="max-height:150px"/>
+<img src="../figs/gt_maps/west_philly_night3_traj.jpg" alt="outdoor_night3" style="max-height:150px"/>
 </a>
 </td>
 </tr>

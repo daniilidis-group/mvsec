@@ -3,6 +3,9 @@ date: 2017-08-08T21:07:13+01:00
 title: Change Log
 weight: 30
 ---
+2018/02/01
+Updated links in download page to reflect the previous name change to the outdoor bags.
+
 2018/01/24  
 Renamed bags in outdoor_day and outdoor_night to follow the convention of outdoor_day/outdoor_day1_gt.bag instead of outdoor_day/west_philly_day_1_gt.bag, etc.
 

@@ -10,7 +10,7 @@
     <atom:link href="https://daniilidis-group.github.io/mvsec/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>The MVSEC Data Set</title>
+      <title>The MVSEC Dataset</title>
       <link>https://daniilidis-group.github.io/mvsec/</link>
       <pubDate>Tue, 08 Aug 2017 21:07:13 +0100</pubDate>
       
@@ -24,6 +24,10 @@
 &lt;p&gt;The Multi Vehicle Stereo Event Camera dataset is a collection of data designed for the development of novel 3D perception algorithms for &lt;strong&gt;event based cameras&lt;/strong&gt;. Stereo event data is collected from car, motorbike, hexacopter and handheld data, and fused with lidar, IMU, motion capture and GPS to provide ground truth pose and depth images. In addition, we provide images from a standard stereo frame based camera pair for comparison with traditional techniques.&lt;/p&gt;
 
 &lt;p&gt;Event based cameras are a new &lt;strong&gt;asynchronous&lt;/strong&gt; sensing modality that measure changes in image intensity. When the log intensity over a pixel changes above a set threshold, the camera &lt;strong&gt;immediately&lt;/strong&gt; returns the pixel location of a change, along with a timestamp with &lt;strong&gt;microsecond&lt;/strong&gt; accuracy, and the direction of the change (up or down). This allows for sensing with extremely low latency. In addition, the cameras have extremely &lt;strong&gt;high dynamic range&lt;/strong&gt; and &lt;strong&gt;low power usage&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/nSYWpqbXLcY&#34; frameborder=&#34;0&#34; allow=&#34;autoplay; encrypted-media&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/center&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;sequences&#34;&gt;Sequences&lt;/h2&gt;
 
@@ -216,7 +220,9 @@ The full set of sensor characteristics can be found below:
 
 &lt;h2 id=&#34;citations&#34;&gt;Citations&lt;/h2&gt;
 
-&lt;p&gt;This dataset is currently undergoing the review process. Please email the authors at alexzhu (at) seas.upenn.edu if you plan to use this dataset in a published work for the relevant citation.&lt;/p&gt;
+&lt;p&gt;Please cite the following paper when using this work in an academic publication:&lt;/p&gt;
+
+&lt;p&gt;Zhu, A. Z., Thakur, D., Ozaslan, T., Pfrommer, B., Kumar, V., &amp;amp; Daniilidis, K. (2018). &lt;a href=&#34;https://arxiv.org/abs/1801.10202&#34;&gt;The Multi Vehicle Stereo Event Camera Dataset: An Event Camera Dataset for 3D Perception.&lt;/a&gt; arXiv preprint arXiv:1801.10202.&lt;/p&gt;
 </description>
     </item>
     

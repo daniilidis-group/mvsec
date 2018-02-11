@@ -1,6 +1,6 @@
 ---
 date: 2017-08-08T21:07:13+01:00
-title: The MVSEC Data Set
+title: The MVSEC Dataset
 type: index
 weight: 0
 ---
@@ -11,6 +11,10 @@ weight: 0
 The Multi Vehicle Stereo Event Camera dataset is a collection of data designed for the development of novel 3D perception algorithms for **event based cameras**. Stereo event data is collected from car, motorbike, hexacopter and handheld data, and fused with lidar, IMU, motion capture and GPS to provide ground truth pose and depth images. In addition, we provide images from a standard stereo frame based camera pair for comparison with traditional techniques.
 
 Event based cameras are a new **asynchronous** sensing modality that measure changes in image intensity. When the log intensity over a pixel changes above a set threshold, the camera **immediately** returns the pixel location of a change, along with a timestamp with **microsecond** accuracy, and the direction of the change (up or down). This allows for sensing with extremely low latency. In addition, the cameras have extremely **high dynamic range** and **low power usage**.
+
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nSYWpqbXLcY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</center>
 
 ## Sequences
 
@@ -203,4 +207,7 @@ For most sequences, accurate pose and depths are provided from a fusion of the s
 
 ## Citations
 
-This dataset is currently undergoing the review process. Please email the authors at alexzhu (at) seas.upenn.edu if you plan to use this dataset in a published work for the relevant citation.
+Please cite the following paper when using this work in an academic publication:
+
+Zhu, A. Z., Thakur, D., Ozaslan, T., Pfrommer, B., Kumar, V., & Daniilidis, K. (2018). [The Multi Vehicle Stereo Event Camera Dataset: An Event Camera Dataset for 3D Perception.](https://arxiv.org/abs/1801.10202) arXiv preprint arXiv:1801.10202.
+

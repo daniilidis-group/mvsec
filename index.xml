@@ -26,7 +26,7 @@
 &lt;p&gt;Event based cameras are a new &lt;strong&gt;asynchronous&lt;/strong&gt; sensing modality that measure changes in image intensity. When the log intensity over a pixel changes above a set threshold, the camera &lt;strong&gt;immediately&lt;/strong&gt; returns the pixel location of a change, along with a timestamp with &lt;strong&gt;microsecond&lt;/strong&gt; accuracy, and the direction of the change (up or down). This allows for sensing with extremely low latency. In addition, the cameras have extremely &lt;strong&gt;high dynamic range&lt;/strong&gt; and &lt;strong&gt;low power usage&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;center&gt;
-&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/AwRMO5vFgak&#34; frameborder=&#34;0&#34; allow=&#34;autoplay; encrypted-media&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/9FaUvvzaHW8&#34; frameborder=&#34;0&#34; allow=&#34;autoplay; encrypted-media&#34; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;/center&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;sequences&#34;&gt;Sequences&lt;/h2&gt;

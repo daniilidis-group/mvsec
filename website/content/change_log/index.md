@@ -3,6 +3,9 @@ date: 2017-08-08T21:07:13+01:00
 title: Change Log
 weight: 30
 ---
+2018/04/20
+Updated IMU to camera extrinsics for the indoor flying set. A different driver was used on the hexacopter than during calibration, which rotated the IMU axes to be aligned with the camera. The extrinsics in the calibration have been modified to reflect this.
+
 2018/02/01
 Updated links in download page to reflect the previous name change to the outdoor bags.
 

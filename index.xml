@@ -496,7 +496,10 @@ Highway 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/motorcycle/motor
       <pubDate>Tue, 08 Aug 2017 21:07:13 +0100</pubDate>
       
       <guid>https://daniilidis-group.github.io/mvsec/change_log/</guid>
-      <description>&lt;p&gt;2018/02/01
+      <description>&lt;p&gt;2018/04/20
+Updated IMU to camera extrinsics for the indoor flying set. A different driver was used on the hexacopter than during calibration, which rotated the IMU axes to be aligned with the camera. The extrinsics in the calibration have been modified to reflect this.&lt;/p&gt;
+
+&lt;p&gt;2018/02/01
 Updated links in download page to reflect the previous name change to the outdoor bags.&lt;/p&gt;
 
 &lt;p&gt;2018/01/24&lt;br /&gt;

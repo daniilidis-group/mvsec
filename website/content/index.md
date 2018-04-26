@@ -209,5 +209,9 @@ For most sequences, accurate pose and depths are provided from a fusion of the s
 
 Please cite the following paper when using this work in an academic publication:
 
+Zhu, A. Z., Thakur, D., Ozaslan, T., Pfrommer, B., Kumar, V., & Daniilidis, K. (2018). [The Multi Vehicle Stereo Event Camera Dataset: An Event Camera Dataset for 3D Perception.](http://doi.org/10.1109/LRA.2018.2800793) IEEE Robotics and Automation Letters, 3(3), 2032-2039.
+
+An arXiv preprint is also available:
+
 Zhu, A. Z., Thakur, D., Ozaslan, T., Pfrommer, B., Kumar, V., & Daniilidis, K. (2018). [The Multi Vehicle Stereo Event Camera Dataset: An Event Camera Dataset for 3D Perception.](https://arxiv.org/abs/1801.10202) arXiv preprint arXiv:1801.10202.
 

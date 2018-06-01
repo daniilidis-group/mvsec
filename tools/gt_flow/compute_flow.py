@@ -362,7 +362,7 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
         numpy_name = base_name+"_odom.npz"
         np.savez(numpy_name,
                  timestamps=timestamps,
-                 lin_vel=smoothed_Vs, ang_vel=smoothed_Omegas, pos=p, quat=q)
+                 lin_vel=smoothed_Vs, ang_vel=smoothed_Omegas, pos=ps, quat=qs)
 
     if save_movie:
         print "Saving movie"

@@ -161,6 +161,7 @@ class Flow:
         distorted_y_flow_out = np.zeros((depth_image.shape[0], depth_image.shape[1]))
         flat_distorted_y_flow_out = distorted_y_flow_out.reshape((-1))
         flat_distorted_y_flow_out[mask] = new_y_pts[mask] - flat_distorted_y[mask]
+
         """
         plt.quiver(flat_distorted_x[::100],
                    flat_distorted_y[::100],
@@ -170,7 +171,7 @@ class Flow:
         plt.show()
         """
 
-        return distorted_x_flow_out, distorted_y_flow_out
+        return x_flow_out, y_flow_out, distorted_x_flow_out, distorted_y_flow_out
     
     def rot_mat_from_quaternion(self, q):
         R = np.array([[1-2*q.y**2-2*q.z**2, 2*q.x*q.y+2*q.w*q.z, 2*q.x*q.z-2*q.w*q.y],
@@ -273,8 +274,10 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
 
     depth_image, _ = gt.left_cam_readers['/davis/left/depth_image_raw'](0)
     flow_shape = (nframes, depth_image.shape[0], depth_image.shape[1])
-    x_flow_tensor = np.zeros(flow_shape, dtype=np.float)
-    y_flow_tensor = np.zeros(flow_shape, dtype=np.float)
+    x_flow_rect = np.zeros(flow_shape, dtype=np.float)
+    y_flow_rect = np.zeros(flow_shape, dtype=np.float)
+    x_flow_dist = np.zeros(flow_shape, dtype=np.float)
+    y_flow_dist = np.zeros(flow_shape, dtype=np.float)
     timestamps = np.zeros((nframes,), dtype=np.float)
     Vs = np.zeros((nframes,3), dtype=np.float)
     Omegas = np.zeros((nframes,3), dtype=np.float)
@@ -331,9 +334,16 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
         smoothed_Vs[frame_num, :] = V
         smoothed_Omegas[frame_num, :] = Omega
 
-        flow_x, flow_y = flow.compute_flow_single_frame(V, Omega, depth_image.img, dt)
-        x_flow_tensor[frame_num,:,:] = flow_x
-        y_flow_tensor[frame_num,:,:] = flow_y
+        flow_x_rect, flow_y_rect, \
+            flow_x_dist, flow_y_dist = flow.compute_flow_single_frame(V,
+                                                                      Omega,
+                                                                      depth_image.img,
+                                                                      dt)
+        x_flow_rect[frame_num,:,:] = flow_x_rect
+        y_flow_rect[frame_num,:,:] = flow_y_rect
+
+        x_flow_dist[frame_num,:,:] = flow_x_dist
+        y_flow_dist[frame_num,:,:] = flow_y_dist
 
         depth_image.release()
 
@@ -343,9 +353,16 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
 
     if save_numpy:
         print "Saving numpy"
-        numpy_name = base_name+"_gt_flow.npz"
-        np.savez(numpy_name, ts=timestamps, x_flow_tensor=x_flow_tensor, y_flow_tensor=y_flow_tensor,
-                             Vs=smoothed_Vs, Omegas=smoothed_Omegas, ps=ps, qs=qs)
+        numpy_name = base_name+"_gt_flow_dist.npz"
+        np.savez(numpy_name,
+                 timestamps=timestamps, x_flow_dist=x_flow_dist, y_flow_dist=y_flow_dist)
+        numpy_name = base_name+"_gt_flow_rect.npz"
+        np.savez(numpy_name,
+                 timestamps=timestamps, x_flow_rect=x_flow_rect, y_flow_rect=y_flow_rect)
+        numpy_name = base_name+"_odom.npz"
+        np.savez(numpy_name,
+                 timestamps=timestamps,
+                 lin_vel=smoothed_Vs, ang_vel=smoothed_Omegas, pos=p, quat=q)
 
     if save_movie:
         print "Saving movie"

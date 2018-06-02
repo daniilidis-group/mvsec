@@ -370,19 +370,19 @@ def experiment_flow(experiment_name, experiment_num, save_movie=True, save_numpy
         plt.close('all')
    
         fig = plt.figure()
-        first_img = flow.colorize_image(x_flow_tensor[0], y_flow_tensor[0])
+        first_img = flow.colorize_image(x_flow_rect[0], y_flow_rect[0])
         im = plt.imshow(first_img, animated=True)
         
         def updatefig(frame_num, *args):
-            im.set_data(flow.colorize_image(x_flow_tensor[frame_num], y_flow_tensor[frame_num]))
+            im.set_data(flow.colorize_image(x_flow_rect[frame_num], y_flow_rect[frame_num]))
             return im,
 
-        ani = animation.FuncAnimation(fig, updatefig, frames=len(x_flow_tensor))
+        ani = animation.FuncAnimation(fig, updatefig, frames=len(x_flow_rect))
         movie_path = base_name+"_gt_flow.mp4"
         ani.save(movie_path)
         plt.show()
 
-    return x_flow_tensor, y_flow_tensor, timestamps, Vs, Omegas
+    return x_flow_rect, y_flow_rect, timestamps, Vs, Omegas
 
 def test_gt_flow():
     import calibration

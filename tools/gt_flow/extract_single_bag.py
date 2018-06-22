@@ -34,8 +34,8 @@ args = parser.parse_args()
 
 downloader.set_tmp(args.mvsec_dir)
 
-compute_flow.experiment_flow(experiment_name, 
-                             experiment_num, 
+compute_flow.experiment_flow(args.sequence, 
+                             args.sequence_number, 
                              save_movie=args.save_movie, 
                              save_numpy=args.save_numpy, 
                              start_ind=args.start_ind, 

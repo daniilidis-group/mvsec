@@ -1,7 +1,16 @@
 import compute_flow
 
 import downloader
-downloader.set_tmp("/NAS/data/mvsec")
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--mvsec_dir',
+                    type=str,
+                    help="Path to MVSEC directory.",
+                    required=True)
+args = parser.parse_args()
+
+downloader.set_tmp(args.mvsec_dir)
 
 #exp_data = compute_flow.experiment_flow("indoor_flying", 1, save_movie=False)
 

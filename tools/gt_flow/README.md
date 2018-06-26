@@ -41,4 +41,4 @@ Note that this will only produce optical flow for the raw (distorted) image at t
 ## Citations
 If you use this dataset, please cite the following paper:
 
-Zhu, Alex Zihao, et al. "EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras." arXiv preprint arXiv:1802.06898 (2018).
+Zhu, A. Z., Yuan, L., Chaney, K., Daniilidis, K. "EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras." Robotics: Science and Systems (2018).

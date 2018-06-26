@@ -140,6 +140,18 @@ Highway 1 <a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_d
 </div>
 
 <BR CLEAR="all">
+
+## Ground Truth Optical Flow Generation
+In addition to the ground truth provided by the original dataset, we provide code to generate dense ground truth optical flow for each sequence with ground truth poses and depths. For storage and bandwidth reasons, we do not provide the optical flow directly, but instead provide the code to generate it from the ground truth provided here. The method for this is outlined in the paper:
+<br>[EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cmaeras](http://www.roboticsproceedings.org/rss14/p62.pdf).
+
+The git repo for this ground truth can be found here:
+[https://github.com/daniilidis-group/mvsec/tree/master/tools/gt_flow](https://github.com/daniilidis-group/mvsec/tree/master/tools/gt_flow).
+
+If you use this optical flow dataset, please cite:
+
+Zhu, A. Z., Yuan, L., Chaney, K., Daniilidis, K. (2018). [EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras](http://www.roboticsproceedings.org/rss14/p62.pdf) Robotics: Science and Systems 2018.
+
 ## Text Files
 
 Coming soon!

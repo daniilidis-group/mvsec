@@ -4,6 +4,8 @@ title: The MVSEC Dataset
 type: index
 weight: 0
 ---
+Ground truth optical flow is now available, as presented in "EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras". See the Downloads page for more info.
+
 ## The Multi Vehicle Stereo Event Camera Dataset
 
 <img src="figs/sensor_mounts.jpg" alt="Sensors mounted on multiple vehicles." style="height: 250px;"/>
@@ -207,11 +209,17 @@ For most sequences, accurate pose and depths are provided from a fusion of the s
 
 ## Citations
 
-Please cite the following paper when using this work in an academic publication:
+Please cite the following papers when using this work in an academic publication:
+
+For the main dataset, please cite:
 
 Zhu, A. Z., Thakur, D., Ozaslan, T., Pfrommer, B., Kumar, V., & Daniilidis, K. (2018). [The Multi Vehicle Stereo Event Camera Dataset: An Event Camera Dataset for 3D Perception.](http://doi.org/10.1109/LRA.2018.2800793) IEEE Robotics and Automation Letters, 3(3), 2032-2039.
 
 An arXiv preprint is also available:
 
 Zhu, A. Z., Thakur, D., Ozaslan, T., Pfrommer, B., Kumar, V., & Daniilidis, K. (2018). [The Multi Vehicle Stereo Event Camera Dataset: An Event Camera Dataset for 3D Perception.](https://arxiv.org/abs/1801.10202) arXiv preprint arXiv:1801.10202.
+
+For the ground truth optical flow, please cite:
+
+Zhu, A. Z., Yuan, L., Chaney, K., Daniilidis, K. (2018). [EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras](http://www.roboticsproceedings.org/rss14/p62.pdf) Robotics: Science and Systems 2018.
 

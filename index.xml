@@ -17,6 +17,8 @@
       <guid>https://daniilidis-group.github.io/mvsec/</guid>
       <description>
 
+&lt;p&gt;Ground truth optical flow is now available, as presented in &amp;ldquo;EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras&amp;rdquo;. See the Downloads page for more info.&lt;/p&gt;
+
 &lt;h2 id=&#34;the-multi-vehicle-stereo-event-camera-dataset&#34;&gt;The Multi Vehicle Stereo Event Camera Dataset&lt;/h2&gt;
 
 &lt;p&gt;&lt;img src=&#34;figs/sensor_mounts.jpg&#34; alt=&#34;Sensors mounted on multiple vehicles.&#34; style=&#34;height: 250px;&#34;/&gt;&lt;/p&gt;
@@ -220,13 +222,19 @@ The full set of sensor characteristics can be found below:
 
 &lt;h2 id=&#34;citations&#34;&gt;Citations&lt;/h2&gt;
 
-&lt;p&gt;Please cite the following paper when using this work in an academic publication:&lt;/p&gt;
+&lt;p&gt;Please cite the following papers when using this work in an academic publication:&lt;/p&gt;
+
+&lt;p&gt;For the main dataset, please cite:&lt;/p&gt;
 
 &lt;p&gt;Zhu, A. Z., Thakur, D., Ozaslan, T., Pfrommer, B., Kumar, V., &amp;amp; Daniilidis, K. (2018). &lt;a href=&#34;http://doi.org/10.1109/LRA.2018.2800793&#34;&gt;The Multi Vehicle Stereo Event Camera Dataset: An Event Camera Dataset for 3D Perception.&lt;/a&gt; IEEE Robotics and Automation Letters, 3(3), 2032-2039.&lt;/p&gt;
 
 &lt;p&gt;An arXiv preprint is also available:&lt;/p&gt;
 
 &lt;p&gt;Zhu, A. Z., Thakur, D., Ozaslan, T., Pfrommer, B., Kumar, V., &amp;amp; Daniilidis, K. (2018). &lt;a href=&#34;https://arxiv.org/abs/1801.10202&#34;&gt;The Multi Vehicle Stereo Event Camera Dataset: An Event Camera Dataset for 3D Perception.&lt;/a&gt; arXiv preprint arXiv:1801.10202.&lt;/p&gt;
+
+&lt;p&gt;For the ground truth optical flow, please cite:&lt;/p&gt;
+
+&lt;p&gt;Zhu, A. Z., Yuan, L., Chaney, K., Daniilidis, K. (2018). &lt;a href=&#34;http://www.roboticsproceedings.org/rss14/p62.pdf&#34;&gt;EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras&lt;/a&gt; Robotics: Science and Systems 2018.&lt;/p&gt;
 </description>
     </item>
     
@@ -487,6 +495,18 @@ Highway 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/motorcycle/motor
 &lt;/div&gt;
 
 &lt;p&gt;&lt;BR CLEAR=&#34;all&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;ground-truth-optical-flow-generation&#34;&gt;Ground Truth Optical Flow Generation&lt;/h2&gt;
+
+&lt;p&gt;In addition to the ground truth provided by the original dataset, we provide code to generate dense ground truth optical flow for each sequence with ground truth poses and depths. For storage and bandwidth reasons, we do not provide the optical flow directly, but instead provide the code to generate it from the ground truth provided here. The method for this is outlined in the paper:
+&lt;br&gt;&lt;a href=&#34;http://www.roboticsproceedings.org/rss14/p62.pdf&#34;&gt;EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cmaeras&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The git repo for this ground truth can be found here:
+&lt;a href=&#34;https://github.com/daniilidis-group/mvsec/tree/master/tools/gt_flow&#34;&gt;https://github.com/daniilidis-group/mvsec/tree/master/tools/gt_flow&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you use this optical flow dataset, please cite:&lt;/p&gt;
+
+&lt;p&gt;Zhu, A. Z., Yuan, L., Chaney, K., Daniilidis, K. (2018). &lt;a href=&#34;http://www.roboticsproceedings.org/rss14/p62.pdf&#34;&gt;EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras&lt;/a&gt; Robotics: Science and Systems 2018.&lt;/p&gt;
 
 &lt;h2 id=&#34;text-files&#34;&gt;Text Files&lt;/h2&gt;
 

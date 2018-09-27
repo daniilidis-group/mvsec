@@ -143,7 +143,11 @@ Highway 1 <a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_d
 
 ## Ground Truth Optical Flow Generation
 In addition to the ground truth provided by the original dataset, we provide code to generate dense ground truth optical flow for each sequence with ground truth poses and depths. For storage and bandwidth reasons, we do not provide the optical flow directly, but instead provide the code to generate it from the ground truth provided here. The method for this is outlined in the paper:
-<br>[EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cmaeras](http://www.roboticsproceedings.org/rss14/p62.pdf).
+<br>[EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras](http://www.roboticsproceedings.org/rss14/p62.pdf).
+
+The processed optical flow ground truth has been saved in numpy format (.npz), and can be found [here](https://drive.google.com/drive/u/2/folders/1XS0AQTuCwUaWOmtjyJWRHkbXjj_igJLp). The ground truth flow for each sequence has a suffix of ```_gt_flow_dist```. Each npz file contains a dictionary with keys: ```'timestamps'```, ```'x_flow_dist'```, ```'y_flow_dist'```.
+
+We also provide files with suffix ```_odom```, which contains a dictionary with keys: ```'timestamps'```, ```'lin_vel'```, ```'ang_vel'```, ```'pos'```, ```'quat'```.
 
 The git repo for this ground truth can be found here:
 [https://github.com/daniilidis-group/mvsec/tree/master/tools/gt_flow](https://github.com/daniilidis-group/mvsec/tree/master/tools/gt_flow).

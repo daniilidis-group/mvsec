@@ -12,7 +12,7 @@ Sequences will be added to this page on a rolling basis. We also plan to include
 
 Note that these bags are large (up to 27G).
 
-NOTE: The server hosting the datasets is currently down. We are working on getting things back up and running, and will remove this message once they are.
+If the server is down (links no longer work), the individual files can be found [here](https://drive.google.com/drive/folders/1gDy2PwVOu_FPOsEZjojdWEB2ZHmpio8D?usp=sharing).
 
 <div style='float:left;margin-left:5%'>
 <table>

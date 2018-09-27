@@ -15,7 +15,10 @@
       <pubDate>Tue, 08 Aug 2017 21:07:13 +0100</pubDate>
       
       <guid>https://daniilidis-group.github.io/mvsec/change_log/</guid>
-      <description>&lt;p&gt;2018/04/20
+      <description>&lt;p&gt;2018/09/26
+Added optical flow ground truth to Downloads section. Fixed bug in outdoor_day1_gt where the depth image timestamps were offset by 0.225s.&lt;/p&gt;
+
+&lt;p&gt;2018/04/20
 Updated IMU to camera extrinsics for the indoor flying set. A different driver was used on the hexacopter than during calibration, which rotated the IMU axes to be aligned with the camera. The extrinsics in the calibration have been modified to reflect this.&lt;/p&gt;
 
 &lt;p&gt;2018/02/01

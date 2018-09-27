@@ -499,7 +499,11 @@ Highway 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/motorcycle/motor
 &lt;h2 id=&#34;ground-truth-optical-flow-generation&#34;&gt;Ground Truth Optical Flow Generation&lt;/h2&gt;
 
 &lt;p&gt;In addition to the ground truth provided by the original dataset, we provide code to generate dense ground truth optical flow for each sequence with ground truth poses and depths. For storage and bandwidth reasons, we do not provide the optical flow directly, but instead provide the code to generate it from the ground truth provided here. The method for this is outlined in the paper:
-&lt;br&gt;&lt;a href=&#34;http://www.roboticsproceedings.org/rss14/p62.pdf&#34;&gt;EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cmaeras&lt;/a&gt;.&lt;/p&gt;
+&lt;br&gt;&lt;a href=&#34;http://www.roboticsproceedings.org/rss14/p62.pdf&#34;&gt;EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The processed optical flow ground truth has been saved in numpy format (.npz), and can be found &lt;a href=&#34;https://drive.google.com/drive/u/2/folders/1XS0AQTuCwUaWOmtjyJWRHkbXjj_igJLp&#34;&gt;here&lt;/a&gt;. The ground truth flow for each sequence has a suffix of &lt;code&gt;_gt_flow_dist&lt;/code&gt;. Each npz file contains a dictionary with keys: &lt;code&gt;&#39;timestamps&#39;&lt;/code&gt;, &lt;code&gt;&#39;x_flow_dist&#39;&lt;/code&gt;, &lt;code&gt;&#39;y_flow_dist&#39;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We also provide files with suffix &lt;code&gt;_odom&lt;/code&gt;, which contains a dictionary with keys: &lt;code&gt;&#39;timestamps&#39;&lt;/code&gt;, &lt;code&gt;&#39;lin_vel&#39;&lt;/code&gt;, &lt;code&gt;&#39;ang_vel&#39;&lt;/code&gt;, &lt;code&gt;&#39;pos&#39;&lt;/code&gt;, &lt;code&gt;&#39;quat&#39;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;The git repo for this ground truth can be found here:
 &lt;a href=&#34;https://github.com/daniilidis-group/mvsec/tree/master/tools/gt_flow&#34;&gt;https://github.com/daniilidis-group/mvsec/tree/master/tools/gt_flow&lt;/a&gt;.&lt;/p&gt;

@@ -1,4 +1,4 @@
-import compute_flow
+import compute_flow; reload(compute_flow)
 
 import downloader
 import argparse

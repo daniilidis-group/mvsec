@@ -138,8 +138,8 @@ class Flow:
         flat_y_flow_out[mask] = fdm * (fym*V[2]-V[1])
         flat_y_flow_out[mask] +=  np.squeeze(np.dot(omm[:,1,:], Omega))
 
-        flat_x_flow_out *= dt
-        flat_y_flow_out *= dt
+        flat_x_flow_out *= dt * self.P[0,0]
+        flat_y_flow_out *= dt * self.P[1,1]
 
         """
         plt.quiver(flat_distorted_x[::100],

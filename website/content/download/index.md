@@ -16,6 +16,12 @@ images = data['davis']['left']['image_raw']
 image_ts = data['davis']['left']['image_raw_ts']
 ```
 
+In addition, we provide a mapping for the nearest event to each DAVIS image in time, as, for example,
+```python
+image_raw_event_inds = data['davis']['left']['image_raw_event_inds']
+```
+, where ```image_raw_event_inds[image_ind]``` would be the event index corresponding to image ```image_ind```.
+
 Note that the events are concatenated into a single array, and as such do not have the associated ROS message timestamps. However, each individual event retains its timestamp.
 
 The files can be found in the Google Drive folder here: https://drive.google.com/open?id=1rwyRk26wtWeRgrAx_fgPc-ubUzTFThkV

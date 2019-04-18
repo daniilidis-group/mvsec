@@ -328,6 +328,22 @@ $
 
 			
 
+<h2 id="hdf5-files">HDF5 Files</h2>
+
+<p>The data streams from the individual sensors have been combined into hdf5 files that mirror the ROS bag structure. hdf5 is a standard format with support in almost any language, and should enable easier development for non-ROS users.</p>
+
+<p>The timestamps for each topic are embedded as an additional array with suffix &lsquo;_ts&rsquo;. For example in python, loading a file and reading the left grayscale images and timestamps would involve the following lines of code:</p>
+
+<pre><code class="language-python">import h5py
+data = h5py.File('outdoor_day2_data.hdf5')
+images = data['davis']['left']['image_raw']
+image_ts = data['davis']['left']['image_raw_ts']
+</code></pre>
+
+<p>Note that the events are concatenated into a single array, and as such do not have the associated ROS message timestamps. However, each individual event retains its timestamp.</p>
+
+<p>The files can be found in the Google Drive folder here: <a href="https://drive.google.com/open?id=1rwyRk26wtWeRgrAx_fgPc-ubUzTFThkV">https://drive.google.com/open?id=1rwyRk26wtWeRgrAx_fgPc-ubUzTFThkV</a></p>
+
 <h2 id="ros-bags">ROS Bags</h2>
 
 <p>To process the bag files, you will need the <a href="https://github.com/uzh-rpg/rpg_dvs_ros">rpg_dvs_ros</a> package to read the events (in particular dvs_msgs). You may also optionally install the <a href="https://github.com/ethz-asl/visensor_node">visensor_node</a> to have access to the /cust_imu0 topic, which includes the magnetometer, pressure and temperature outputs of the VI-Sensor.</p>
@@ -480,10 +496,6 @@ Highway 1 <a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_d
 <p>If you use this optical flow dataset, please cite:</p>
 
 <p>Zhu, A. Z., Yuan, L., Chaney, K., Daniilidis, K. (2018). <a href="http://www.roboticsproceedings.org/rss14/p62.pdf">EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras</a> Robotics: Science and Systems 2018.</p>
-
-<h2 id="text-files">Text Files</h2>
-
-<p>Coming soon!</p>
 
 
 			<footer class="footer">

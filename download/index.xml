@@ -17,6 +17,22 @@
       <guid>https://daniilidis-group.github.io/mvsec/download/</guid>
       <description>
 
+&lt;h2 id=&#34;hdf5-files&#34;&gt;HDF5 Files&lt;/h2&gt;
+
+&lt;p&gt;The data streams from the individual sensors have been combined into hdf5 files that mirror the ROS bag structure. hdf5 is a standard format with support in almost any language, and should enable easier development for non-ROS users.&lt;/p&gt;
+
+&lt;p&gt;The timestamps for each topic are embedded as an additional array with suffix &amp;lsquo;_ts&amp;rsquo;. For example in python, loading a file and reading the left grayscale images and timestamps would involve the following lines of code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import h5py
+data = h5py.File(&#39;outdoor_day2_data.hdf5&#39;)
+images = data[&#39;davis&#39;][&#39;left&#39;][&#39;image_raw&#39;]
+image_ts = data[&#39;davis&#39;][&#39;left&#39;][&#39;image_raw_ts&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that the events are concatenated into a single array, and as such do not have the associated ROS message timestamps. However, each individual event retains its timestamp.&lt;/p&gt;
+
+&lt;p&gt;The files can be found in the Google Drive folder here: &lt;a href=&#34;https://drive.google.com/open?id=1rwyRk26wtWeRgrAx_fgPc-ubUzTFThkV&#34;&gt;https://drive.google.com/open?id=1rwyRk26wtWeRgrAx_fgPc-ubUzTFThkV&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2 id=&#34;ros-bags&#34;&gt;ROS Bags&lt;/h2&gt;
 
 &lt;p&gt;To process the bag files, you will need the &lt;a href=&#34;https://github.com/uzh-rpg/rpg_dvs_ros&#34;&gt;rpg_dvs_ros&lt;/a&gt; package to read the events (in particular dvs_msgs). You may also optionally install the &lt;a href=&#34;https://github.com/ethz-asl/visensor_node&#34;&gt;visensor_node&lt;/a&gt; to have access to the /cust_imu0 topic, which includes the magnetometer, pressure and temperature outputs of the VI-Sensor.&lt;/p&gt;
@@ -169,10 +185,6 @@ Highway 1 &lt;a href=&#34;http://visiondata.cis.upenn.edu/mvsec/motorcycle/motor
 &lt;p&gt;If you use this optical flow dataset, please cite:&lt;/p&gt;
 
 &lt;p&gt;Zhu, A. Z., Yuan, L., Chaney, K., Daniilidis, K. (2018). &lt;a href=&#34;http://www.roboticsproceedings.org/rss14/p62.pdf&#34;&gt;EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras&lt;/a&gt; Robotics: Science and Systems 2018.&lt;/p&gt;
-
-&lt;h2 id=&#34;text-files&#34;&gt;Text Files&lt;/h2&gt;
-
-&lt;p&gt;Coming soon!&lt;/p&gt;
 </description>
     </item>
     

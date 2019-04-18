@@ -4,6 +4,9 @@ title: The MVSEC Dataset
 type: index
 weight: 0
 ---
+
+April 18 2019: We have generated HDF5 files as a ROS free alternative for the dataset. These are now available for download, please see the Downloads section.
+
 Ground truth optical flow is now available, as presented in "EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras". See the Downloads page for more info.
 
 ## The Multi Vehicle Stereo Event Camera Dataset

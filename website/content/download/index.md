@@ -4,6 +4,22 @@ title: Download
 weight: 25
 ---
 
+## HDF5 Files
+The data streams from the individual sensors have been combined into hdf5 files that mirror the ROS bag structure. hdf5 is a standard format with support in almost any language, and should enable easier development for non-ROS users.
+
+The timestamps for each topic are embedded as an additional array with suffix '_ts'. For example in python, loading a file and reading the left grayscale images and timestamps would involve the following lines of code:
+
+```python
+import h5py
+data = h5py.File('outdoor_day2_data.hdf5')
+images = data['davis']['left']['image_raw']
+image_ts = data['davis']['left']['image_raw_ts']
+```
+
+Note that the events are concatenated into a single array, and as such do not have the associated ROS message timestamps. However, each individual event retains its timestamp.
+
+The files can be found in the Google Drive folder here: https://drive.google.com/open?id=1rwyRk26wtWeRgrAx_fgPc-ubUzTFThkV
+
 ## ROS Bags
 
 To process the bag files, you will need the <a href="https://github.com/uzh-rpg/rpg_dvs_ros">rpg_dvs_ros</a> package to read the events (in particular dvs_msgs). You may also optionally install the <a href="https://github.com/ethz-asl/visensor_node">visensor_node</a> to have access to the /cust_imu0 topic, which includes the magnetometer, pressure and temperature outputs of the VI-Sensor.
@@ -155,7 +171,3 @@ The git repo for this ground truth can be found here:
 If you use this optical flow dataset, please cite:
 
 Zhu, A. Z., Yuan, L., Chaney, K., Daniilidis, K. (2018). [EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras](http://www.roboticsproceedings.org/rss14/p62.pdf) Robotics: Science and Systems 2018.
-
-## Text Files
-
-Coming soon!

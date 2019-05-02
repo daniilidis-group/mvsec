@@ -165,10 +165,9 @@ def convert_velodyne(hdf5_file, bag_path):
         times_dataset[i] = ts
 
 def convert_data(path):
-    has_visensor = "outdoor_" in path or "motorcycle_" in path
+    has_visensor = "outdoor_" in path or "motorcycle" in path
     has_right_images = not "outdoor_day" in path
-    has_ground_truth = not "motorcycle_" in path
-    has_flow = not "motorcycle_" in path
+    has_ground_truth = not "motorcycle" in path
 
     data_bag_path = path+'_data.bag'
 
@@ -206,10 +205,9 @@ def convert_data(path):
     data_file.close()
 
 def convert_gt(path):
-    has_visensor = "outdoor_" in path or "motorcycle_" in path
+    has_visensor = "outdoor_" in path or "motorcycle" in path
     has_right_images = not "outdoor_day" in path
-    has_ground_truth = not "motorcycle_" in path
-    has_flow = not "motorcycle_" in path
+    has_ground_truth = not "motorcycle" in path
 
     if not has_ground_truth:
         return
@@ -242,15 +240,16 @@ def convert_gt(path):
 
 if __name__ == "__main__":
     dataset_list = [
-            '/home/ken/datasets/mvsec/indoor_flying/indoor_flying1',
-            '/home/ken/datasets/mvsec/indoor_flying/indoor_flying2',
-            '/home/ken/datasets/mvsec/indoor_flying/indoor_flying3',
-            '/home/ken/datasets/mvsec/indoor_flying/indoor_flying4',
-            '/home/ken/datasets/mvsec/outdoor_day/outdoor_day1',
-            '/home/ken/datasets/mvsec/outdoor_day/outdoor_day2',
+            # '/home/ken/datasets/mvsec/indoor_flying/indoor_flying1',
+            # '/home/ken/datasets/mvsec/indoor_flying/indoor_flying2',
+            # '/home/ken/datasets/mvsec/indoor_flying/indoor_flying3',
+            # '/home/ken/datasets/mvsec/indoor_flying/indoor_flying4',
+            # '/home/ken/datasets/mvsec/outdoor_day/outdoor_day1',
+            # '/home/ken/datasets/mvsec/outdoor_day/outdoor_day2',
             '/home/ken/datasets/mvsec/outdoor_night/outdoor_night1',
-            '/home/ken/datasets/mvsec/outdoor_night/outdoor_night2',
-            '/home/ken/datasets/mvsec/outdoor_night/outdoor_night3',
+            # '/home/ken/datasets/mvsec/outdoor_night/outdoor_night2',
+            # '/home/ken/datasets/mvsec/outdoor_night/outdoor_night3',
+            # '/home/ken/datasets/mvsec/motorcycle/motorcycle1',
             ]
     for seq in dataset_list:
         convert_data(seq)

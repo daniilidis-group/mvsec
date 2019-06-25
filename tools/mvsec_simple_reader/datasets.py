@@ -107,7 +107,7 @@ class MVSECSequence(object):
         prev_image, prev_image_ts = self.get_image(prev_ind)
         cur_image, cur_image_ts = self.get_image(cur_ind)
 
-        events = self.get_events(pind, cind, bbox)
+        events = self.get_events(pind, cind)
 
         return {"events": events,
                 "prev_image": prev_image,

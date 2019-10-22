@@ -237,6 +237,10 @@ The full set of sensor characteristics can be found below:
 &lt;p&gt;For the ground truth optical flow, please cite:&lt;/p&gt;
 
 &lt;p&gt;Zhu, A. Z., Yuan, L., Chaney, K., Daniilidis, K. (2018). &lt;a href=&#34;http://www.roboticsproceedings.org/rss14/p62.pdf&#34;&gt;EV-FlowNet: Self-Supervised Optical Flow Estimation for Event-based Cameras&lt;/a&gt; Robotics: Science and Systems 2018.&lt;/p&gt;
+
+&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
+
+&lt;p&gt;&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-sa/4.0/&#34;&gt;&lt;img alt=&#34;Creative Commons License&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-sa/4.0/&#34;&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

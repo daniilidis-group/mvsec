@@ -45,19 +45,10 @@ If the server is down (links no longer work), the individual files can be found 
 <tr>
 <td>Indoor flying (Note: No VI-Sensor data is available for this scene).</td>
 <td>
-<a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying_calib.zip">Calibration</a>
+<a href="https://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying_calib.zip">Calibration</a>
 </td>
 <td>
-Indoor Flying 1 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying1_data.bag">Data (1.2G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying1_gt.bag">Ground truth (2.6G)</a>
-</td>
-</tr>
-<tr>
-<td>
-</td>
-<td>
-</td>
-<td>
-Indoor Flying 2 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying2_data.bag">Data (1.7G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying2_gt.bag">Ground truth (3.2G)</a>
+Indoor Flying 1 <a href="https://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying1_data.bag">Data (1.2G)</a> <a href="https://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying1_gt.bag">Ground truth (2.6G)</a>
 </td>
 </tr>
 <tr>
@@ -66,7 +57,7 @@ Indoor Flying 2 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/ind
 <td>
 </td>
 <td>
-Indoor Flying 3 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying3_data.bag">Data (1.8G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying3_gt.bag">Ground truth (3.5G)</a>
+Indoor Flying 2 <a href="https://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying2_data.bag">Data (1.7G)</a> <a href="https://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying2_gt.bag">Ground truth (3.2G)</a>
 </td>
 </tr>
 <tr>
@@ -75,16 +66,25 @@ Indoor Flying 3 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/ind
 <td>
 </td>
 <td>
-Indoor Flying 4 <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying4_data.bag">Data (419M)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying4_gt.bag">Ground truth (738M)</a>
+Indoor Flying 3 <a href="https://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying3_data.bag">Data (1.8G)</a> <a href="https://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying3_gt.bag">Ground truth (3.5G)</a>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+</td>
+<td>
+Indoor Flying 4 <a href="https://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying4_data.bag">Data (419M)</a> <a href="https://visiondata.cis.upenn.edu/mvsec/indoor_flying/indoor_flying4_gt.bag">Ground truth (738M)</a>
 </td>
 </tr>
 <tr>
 <td>Outdoor Driving Day (Note: A hardware failure caused the grayscale images on the right DAVIS grayscale images for this scene to be corrupted. However, VI-Sensor grayscale images are available).</td>
 <td>
-<a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day_calib.zip">Calibration</a>
+<a href="https://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day_calib.zip">Calibration</a>
 </td>
 <td>
-Outdoor Day 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day1_data.bag">Data (9.7G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day1_gt.bag">Ground truth (9.5G)</a>
+Outdoor Day 1 <a href="https://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day1_data.bag">Data (9.7G)</a> <a href="https://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day1_gt.bag">Ground truth (9.5G)</a>
 </td>
 <td>
 <a target="_blank" href="../figs/gt_maps/west_philly_day1_traj.jpg">
@@ -99,7 +99,7 @@ Outdoor Day 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor
 <td>
 </td>
 <td>
-Outdoor Day 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day2_data.bag">Data (27G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day2_gt.bag">Ground truth (23G)</a>
+Outdoor Day 2 <a href="https://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day2_data.bag">Data (27G)</a> <a href="https://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor_day2_gt.bag">Ground truth (23G)</a>
 </td>
 <td>
 <a target="_blank" href="../figs/gt_maps/west_philly_day2_traj.jpg">
@@ -110,10 +110,10 @@ Outdoor Day 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_day/outdoor
 <tr>
 <td>Outdoor Driving Night</td>
 <td>
-<a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night_calib.zip">Calibration</a>
+<a href="https://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night_calib.zip">Calibration</a>
 </td>
 <td>
-Outdoor Night 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night1_data.bag">Data (8.1G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night1_gt.bag">Ground truth (9.5G)</a>
+Outdoor Night 1 <a href="https://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night1_data.bag">Data (8.1G)</a> <a href="https://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night1_gt.bag">Ground truth (9.5G)</a>
 </td>
 <td>
 <a target="_blank" href="../figs/gt_maps/west_philly_night1_traj.jpg">
@@ -127,7 +127,7 @@ Outdoor Night 1 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/out
 <td>
 </td>
 <td>
-Outdoor Night 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night2_data.bag">Data (11G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night2_gt.bag">Ground truth (11G)</a>
+Outdoor Night 2 <a href="https://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night2_data.bag">Data (11G)</a> <a href="https://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night2_gt.bag">Ground truth (11G)</a>
 </td>
 <td>
 <a target="_blank" href="../figs/gt_maps/west_philly_night2_traj.jpg">
@@ -141,7 +141,7 @@ Outdoor Night 2 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/out
 <td>
 </td>
 <td>
-Outdoor Night 3 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night3_data.bag">Data (9G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night3_gt.bag">Ground truth (11G)</a>
+Outdoor Night 3 <a href="https://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night3_data.bag">Data (9G)</a> <a href="https://visiondata.cis.upenn.edu/mvsec/outdoor_night/outdoor_night3_gt.bag">Ground truth (11G)</a>
 </td>
 <td>
 <a target="_blank" href="../figs/gt_maps/west_philly_night3_traj.jpg">
@@ -152,10 +152,10 @@ Outdoor Night 3 <a href="http://visiondata.cis.upenn.edu/mvsec/outdoor_night/out
 <tr>
 <td>Motorcycle (Note: No lidar).</td>
 <td>
-<a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_calib.zip">Calibration</a>
+<a href="https://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_calib.zip">Calibration</a>
 </td>
 <td>
-Highway 1 <a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_data.bag">Data (42G)</a> <a href="http://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_gt.bag">Ground truth (659K)</a>
+Highway 1 <a href="https://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_data.bag">Data (42G)</a> <a href="https://visiondata.cis.upenn.edu/mvsec/motorcycle/motorcycle_gt.bag">Ground truth (659K)</a>
 </td>
 </tr>
 </table>
